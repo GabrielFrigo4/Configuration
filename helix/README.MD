@@ -1,2 +1,2 @@
 # Helix  Configuration
- - Path (Folder): `~/.config/helix`
+ - Path (Folder): `~/.config/helix/config.toml`
