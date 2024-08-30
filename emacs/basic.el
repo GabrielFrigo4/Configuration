@@ -1,6 +1,8 @@
+;; Initial
 (setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message 'nil)
-(require 'uniquify)
+
+;; Variables
 (custom-set-variables
  '(column-number-mode t)
  '(global-display-line-numbers-mode t)
@@ -8,5 +10,4 @@
  '(custom-enabled-themes '(tsdh-dark))
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
- '(tool-bar-mode nil)
- '(xterm-mouse-mode 1))
+ '(tool-bar-mode nil))
