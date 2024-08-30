@@ -6,6 +6,7 @@
  '(global-display-line-numbers-mode t)
  '(display-line-numbers-type 'relative)
  '(custom-enabled-themes '(tsdh-dark))
+ '(display-time-mode t)
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
  '(size-indication-mode t)
