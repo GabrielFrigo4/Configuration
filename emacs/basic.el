@@ -8,6 +8,5 @@
  '(custom-enabled-themes '(tsdh-dark))
  '(inhibit-startup-screen t)
  '(menu-bar-mode nil)
- '(size-indication-mode t)
  '(tool-bar-mode nil)
  '(xterm-mouse-mode 1))
