@@ -31,8 +31,11 @@ set clipboard^=unnamed,unnamedplus
 set paste
 set go+=a
 
+" Keys
+set backspace+=indent,eol,start
+set whichwrap+=<,>,h,l,[,]
+
 " Text
-set backspace=indent,eol,start
 set softtabstop=0
 set shiftwidth=4
 set tabstop=4

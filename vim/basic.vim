@@ -25,7 +25,10 @@ set clipboard^=unnamed,unnamedplus
 set paste
 set go+=a
 
+" Keys
+set backspace+=indent,eol,start
+set whichwrap+=<,>,h,l,[,]
+
 " Text
-set backspace=indent,eol,start
 set autoindent
 set encoding=UTF-8
