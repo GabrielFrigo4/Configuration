@@ -1,0 +1,28 @@
+theme = "dark_plus"
+
+[editor]
+line-number = "relative"
+cursorcolumn = true
+cursorline = true
+true-color = true
+mouse = true
+
+[editor.lsp]
+auto-signature-help = false
+enable = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+del = "delete_char_forward"
+backspace = "delete_char_backward"
+
+[keys.select]
+del = "delete_selection"
+backspace = "delete_selection"
