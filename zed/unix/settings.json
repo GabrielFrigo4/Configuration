@@ -18,7 +18,7 @@
   "lsp": {
     "clangd": {
       "binary": {
-        "path": "C:msys64mingw64\bing++.exe",
+        "path": "/usr/bin/clangd",
         "arguments": [
           "--background-index",
           "--compile-commands-dir=build",
