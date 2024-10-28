@@ -7,27 +7,32 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
-  "hard_tabs": true,
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
-  },
-  "lsp": {
-    "clangd": {
-      "binary": {
-        "path": "C:\\msys64\\clang64\\bin\\clangd.exe",
-        "arguments": [
-          "--background-index",
-          "--compile-commands-dir=build",
-          "--clang-tidy",
-          "--clang-tidy-checks=*",
-          "--header-insertion=never",
-          "--header-insertion-decorators=none"
-        ]
-      }
-    }
-  }
+	"ui_font_size": 16,
+	"buffer_font_size": 16,
+	"hard_tabs": true,
+	"theme": {
+		"mode": "system",
+		"light": "One Light",
+		"dark": "One Dark"
+	},
+	"terminal": {
+		"font_family": "RobotoMono Nerd Font",
+		"shell": {
+			"program": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+		}
+	},
+	"lsp": {
+		"clangd": {
+			"binary": {
+				"path": "C:\\msys64\\clang64\\bin\\clangd.exe",
+				"arguments": [
+					"--background-index",
+					"--compile-commands-dir=build",
+					"--clang-tidy",
+					"--header-insertion=never",
+					"--header-insertion-decorators=0"
+				]
+			}
+		}
+	}
 }
