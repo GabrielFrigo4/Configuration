@@ -16,7 +16,7 @@
 		"dark": "One Dark"
 	},
 	"terminal": {
-		"font_family": "RobotoMono Nerd Font",
+		"font_family": "MesloLGS NF",
 		"shell": {
 			"program": "/usr/bin/zsh"
 		}
