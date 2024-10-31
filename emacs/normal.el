@@ -25,4 +25,3 @@
 (setq-default font-lock-maximum-decoration t)
 (setq-default make-backup-files nil)
 (setq-default visible-bell t)
-(setq-default tab-width 4)
