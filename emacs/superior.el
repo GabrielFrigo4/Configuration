@@ -36,10 +36,12 @@
 (setq-default font-lock-maximum-decoration t)
 (setq-default make-backup-files nil)
 (setq-default visible-bell t)
+
+;; Set Tab-Indent
 (setq-default tab-width 4)
+(setq-default indent-tabs-mode t)
 
 ;; Set *cc-mode*
-(setq-default indent-tabs-mode t)
 (setq-default c-ts-mode-indent-offset tab-width)
 (setq-default c-ts-mode-indent-style 'bsd)
 (setq-default c-basic-offset tab-width)
