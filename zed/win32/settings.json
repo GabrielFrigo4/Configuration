@@ -33,6 +33,13 @@
 					"--header-insertion-decorators=0"
 				]
 			}
+		},
+		"pyright": {
+			"settings": {
+				"python": {
+					"pythonPath": "C:\\Users\\gabri\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+				}
+			}
 		}
 	}
 }

@@ -21,10 +21,10 @@
 			"program": "/usr/bin/zsh"
 		}
 	},
-  "lsp": {
-    "clangd": {
-      "binary": {
-        "path": "/usr/bin/clangd",
+	"lsp": {
+		"clangd": {
+			"binary": {
+				"path": "/usr/bin/clangd",
 				"arguments": [
 					"--background-index",
 					"--compile-commands-dir=build",
@@ -32,7 +32,14 @@
 					"--header-insertion=never",
 					"--header-insertion-decorators=0"
 				]
-      }
-    }
-  }
+			}
+		},
+		"pyright": {
+			"settings": {
+				"python": {
+					"pythonPath": "/usr/bin/python3"
+				}
+			}
+		}
+	}
 }
