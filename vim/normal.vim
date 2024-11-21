@@ -1,3 +1,5 @@
+" NORMAL SETUP ------------------------------------------------------------ {{{
+
 " Basic Setup
 set nocompatible
 set nobackup
@@ -36,8 +38,10 @@ set backspace+=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
 
 " Text
-set softtabstop=0
+set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set autoindent
 set encoding=UTF-8
+
+" }}}

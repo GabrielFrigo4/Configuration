@@ -1,3 +1,5 @@
+" SUPERIOR SETUP ------------------------------------------------------------ {{{
+
 " Basic Setup
 set nocompatible
 set nobackup
@@ -38,7 +40,7 @@ set backspace+=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
 
 " Text
-set softtabstop=0
+set softtabstop=4
 set shiftwidth=4
 set tabstop=4
 set autoindent
@@ -50,3 +52,18 @@ set wildmode=list:longest
 
 " ReMap
 nnoremap <expr> <Backspace> col('.') == 1 ? 'kgJ' : 'X'
+
+" }}}
+
+
+" LANGUAGE SETUP ------------------------------------------------------------ {{{
+
+" Tab Fixed
+au BufNewFile,BufRead *.py,*.pyw,*.org
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set noexpandtab |
+    \ set autoindent
+
+" }}}
