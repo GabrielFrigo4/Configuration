@@ -75,3 +75,14 @@
   )
 (add-hook 'prog-mode-hook 'superword-mode)
 (add-hook 'prog-mode-hook #'custom-prog-mode-hook)
+
+;; Backspace
+(global-set-key (kbd "<backspace>") 'backward-delete-char)
+(global-set-key (kbd "S-<backspace>") 'backward-delete-char-untabify)
+
+;; Delete
+(global-set-key (kbd "<del>") 'backward-delete-char)
+(global-set-key (kbd "S-<del>") 'backward-delete-char-untabify)
+
+;; Quit
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
