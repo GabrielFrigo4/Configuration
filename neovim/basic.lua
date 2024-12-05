@@ -1,5 +1,4 @@
-" BASIC SETUP ------------------------------------------------------------ {{{
-
+vim.cmd([[
 " Basic Setup
 set nocompatible
 filetype on
@@ -34,5 +33,4 @@ set whichwrap+=<,>,h,l,[,]
 " Text
 set autoindent
 set encoding=UTF-8
-
-" }}}
+]])

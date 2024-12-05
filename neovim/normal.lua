@@ -1,5 +1,4 @@
-" NORMAL SETUP ------------------------------------------------------------ {{{
-
+vim.cmd([[
 " Basic Setup
 set nocompatible
 set nobackup
@@ -43,5 +42,4 @@ set shiftwidth=4
 set tabstop=4
 set autoindent
 set encoding=UTF-8
-
-" }}}
+]])

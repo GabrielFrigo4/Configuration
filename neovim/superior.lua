@@ -1,5 +1,4 @@
-" SUPERIOR SETUP ------------------------------------------------------------ {{{
-
+vim.cmd([[
 " Basic Setup
 set nocompatible
 set nobackup
@@ -53,11 +52,6 @@ set wildmode=list:longest
 " ReMap
 nnoremap <expr> <Backspace> col('.') == 1 ? 'kgJ' : 'X'
 
-" }}}
-
-
-" LANGUAGE SETUP ------------------------------------------------------------ {{{
-
 " Tab Fixed
 au BufNewFile,BufRead *.py,*.pyw,*.org
     \ set tabstop=4 |
@@ -65,5 +59,4 @@ au BufNewFile,BufRead *.py,*.pyw,*.org
     \ set shiftwidth=4 |
     \ set noexpandtab |
     \ set autoindent
-
-" }}}
+]])
