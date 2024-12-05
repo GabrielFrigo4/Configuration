@@ -25,3 +25,14 @@
 (setq-default font-lock-maximum-decoration t)
 (setq-default make-backup-files nil)
 (setq-default visible-bell t)
+
+;; Backspace
+(global-set-key (kbd "<backspace>") 'backward-delete-char)
+(global-set-key (kbd "S-<backspace>") 'backward-delete-char-untabify)
+
+;; Delete
+(global-set-key (kbd "<del>") 'backward-delete-char)
+(global-set-key (kbd "S-<del>") 'backward-delete-char-untabify)
+
+;; Quit
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
