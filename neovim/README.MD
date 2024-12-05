@@ -1,3 +1,3 @@
 # NeoVim Configuration
- - Path (Folder): `~/vimfiles/vimrc`
- - Path (File): `~/.vimrc`
+ - Path Unix (Folder): `~/.config/nvim`
+ - Path Windows (Folder): `~\AppData\Local\nvim`
