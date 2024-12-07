@@ -34,6 +34,15 @@
 				]
 			}
 		},
+		"rust-analyzer": {
+			"initialization_options": {
+				"rustfmt": {
+					"extraArgs": [
+						"hard_tabs=true"
+					]
+				}
+			}
+		},
 		"pyright": {
 			"settings": {
 				"python": {
