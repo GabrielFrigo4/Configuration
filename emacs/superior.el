@@ -1,3 +1,7 @@
+;; ################
+;; # Settings
+;; ################
+
 ;; Initial
 (setq initial-major-mode 'fundamental-mode)
 (setq initial-scratch-message 'nil)
@@ -31,6 +35,21 @@
 (when (eq system-type 'darwin)
  (setq mac-command-modifier 'meta)
  (setq mac-option-modifier 'super))
+
+;; Backspace
+(global-set-key (kbd "<backspace>") 'backward-delete-char)
+(global-set-key (kbd "S-<backspace>") 'backward-delete-char-untabify)
+
+;; Delete
+(global-set-key (kbd "<del>") 'backward-delete-char)
+(global-set-key (kbd "S-<del>") 'backward-delete-char-untabify)
+
+;; Quit
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+;; ################
+;; # Languages
+;; ################
 
 ;; Default
 (setq-default font-lock-maximum-decoration t)
@@ -76,13 +95,40 @@
 (add-hook 'prog-mode-hook 'superword-mode)
 (add-hook 'prog-mode-hook #'custom-prog-mode-hook)
 
-;; Backspace
-(global-set-key (kbd "<backspace>") 'backward-delete-char)
-(global-set-key (kbd "S-<backspace>") 'backward-delete-char-untabify)
+;; ################
+;; # Tree-Sitter
+;; ################
 
-;; Delete
-(global-set-key (kbd "<del>") 'backward-delete-char)
-(global-set-key (kbd "S-<del>") 'backward-delete-char-untabify)
+;; Import *treesit*
+(require 'treesit)
 
-;; Quit
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; Set *treesit-font-lock* to Maximun Decoration
+(setq-default treesit-font-lock-level 4)
+
+;; Set *treesit-language-source-alist*
+(setq treesit-language-source-alist
+      '(;; BIN
+        (c . ("https://github.com/tree-sitter/tree-sitter-c" "master" "src"))
+        (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "master" "src"))
+        (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "master" "src"))
+        (go . ("https://github.com/tree-sitter/tree-sitter-go" "master" "src"))
+        (java . ("https://github.com/tree-sitter/tree-sitter-java" "master" "src"))
+        (python . ("https://github.com/tree-sitter/tree-sitter-python" "master" "src"))
+        ))
+
+;; Set *major-mode-remap-alist*
+(setq major-mode-remap-alist
+      '(;; BIN
+        (c-mode . c-ts-mode)
+        (cpp-mode . cpp-ts-mode)
+        (rust-mode . rust-ts-mode)
+        (go-mode . go-ts-mode)
+        (java-mode . java-ts-mode)
+        (python-mode . python-ts-mode)
+        ))
+
+;; Def *tree-sitter-setup*
+(defun tree-sitter-setup ()
+  (interactive)
+  (dolist (source treesit-language-source-alist)
+    (treesit-install-language-grammar (car source))))
