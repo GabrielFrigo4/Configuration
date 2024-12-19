@@ -112,7 +112,9 @@
         (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "master" "src"))
         (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "master" "src"))
         (go . ("https://github.com/tree-sitter/tree-sitter-go" "master" "src"))
+        ;; JIT
         (java . ("https://github.com/tree-sitter/tree-sitter-java" "master" "src"))
+        ;; VM
         (python . ("https://github.com/tree-sitter/tree-sitter-python" "master" "src"))
         ))
 
@@ -120,10 +122,13 @@
 (setq major-mode-remap-alist
       '(;; BIN
         (c-mode . c-ts-mode)
-        (cpp-mode . cpp-ts-mode)
+        (c++-mode . c++-ts-mode)
+        (c-or-c++-mode . c-or-c++-ts-mode)
         (rust-mode . rust-ts-mode)
         (go-mode . go-ts-mode)
+        ;; JIT
         (java-mode . java-ts-mode)
+        ;; VM
         (python-mode . python-ts-mode)
         ))
 
