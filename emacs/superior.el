@@ -25,10 +25,10 @@
  '(display-time-mode t)
  '(xterm-mouse-mode 1))
 
-;; Set default to UTF-8 and UTF-16-LE
-(when (eq system-type 'windows-nt)
- (set-default-coding-systems 'utf-16-le)
- (set-default-coding-systems 'utf-8))
+;; Set default to UTF-8
+(set-default-coding-systems 'utf-8)
+(setq-default coding-system-for-read 'utf-8)
+(setq-default coding-system-for-write 'utf-8)
 
 ;; On OSX, swap Meta and Super
 ;; For Better Keyboard Ergonomics
@@ -47,16 +47,18 @@
 ;; Quit
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+;; System
+(setq-default make-backup-files nil)
+(setq-default visible-bell t)
+
 ;; ################
 ;; # Languages
 ;; ################
 
-;; Default
-(setq-default font-lock-maximum-decoration t)
-(setq-default make-backup-files nil)
-(setq-default visible-bell t)
+;; Set *font-lock* to Maximun Decoration
+(setq-default font-lock-maximum-decoration 't)
 
-;; Set Tab-Indent
+;; Set *prog-mode*
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode t)
 
@@ -80,23 +82,28 @@
 (setq-default cperl-indent-level tab-width)
 
 ;; Set *python-mode*
+(setq-default python-indent-guess-indent-offset t)
+(setq-default python-indent-guess-indent-offset-verbose nil)
+(setq-default python-indent-offset tab-width)
+
+;; Set *python-mode*
 (defun custom-python-mode-hook ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
-  (setq python-indent-offset tab-width)
+  (setq-local tab-width 4)
+  (setq-local indent-tabs-mode t)
+  (setq-local python-indent-offset tab-width)
   )
 (add-hook 'python-mode-hook #'custom-python-mode-hook)
 
 ;; Set *prog-mode*
 (defun custom-prog-mode-hook ()
-  (setq tab-width 4)
-  (setq indent-tabs-mode t)
+  (setq-local tab-width 4)
+  (setq-local indent-tabs-mode t)
   )
 (add-hook 'prog-mode-hook 'superword-mode)
 (add-hook 'prog-mode-hook #'custom-prog-mode-hook)
 
 ;; ################
-;; # Tree-Sitter
+;; # Treesit
 ;; ################
 
 ;; Import *treesit*
@@ -106,31 +113,70 @@
 (setq-default treesit-font-lock-level 4)
 
 ;; Set *treesit-language-source-alist*
-(setq treesit-language-source-alist
-      '(;; BIN
-        (c . ("https://github.com/tree-sitter/tree-sitter-c" "master" "src"))
-        (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "master" "src"))
-        (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "master" "src"))
-        (go . ("https://github.com/tree-sitter/tree-sitter-go" "master" "src"))
-        ;; JIT
-        (java . ("https://github.com/tree-sitter/tree-sitter-java" "master" "src"))
-        ;; VM
-        (python . ("https://github.com/tree-sitter/tree-sitter-python" "master" "src"))
-        ))
+(setq-default treesit-language-source-alist
+              '(;; BIN
+                (c . ("https://github.com/tree-sitter/tree-sitter-c" "master" "src"))
+                (cpp . ("https://github.com/tree-sitter/tree-sitter-cpp" "master" "src"))
+                (rust . ("https://github.com/tree-sitter/tree-sitter-rust" "master" "src"))
+                (go . ("https://github.com/tree-sitter/tree-sitter-go" "master" "src"))
+                ;; JIT
+                (c-sharp . ("https://github.com/tree-sitter/tree-sitter-c-sharp" "master" "src"))
+                (java . ("https://github.com/tree-sitter/tree-sitter-java" "master" "src"))
+                ;; VM
+                (python . ("https://github.com/tree-sitter/tree-sitter-python" "master" "src"))
+                (ruby . ("https://github.com/tree-sitter/tree-sitter-ruby" "master" "src"))
+                ;; WEB
+                (javascript . ("https://github.com/tree-sitter/tree-sitter-javascript" "master" "src"))
+                (typescript . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src"))
+                (tsx . ("https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src"))
+                (css . ("https://github.com/tree-sitter/tree-sitter-css" "master" "src"))
+                ;; SHELL
+                (bash . ("https://github.com/tree-sitter/tree-sitter-bash" "master" "src"))
+                ;; MAKE
+                (cmake . ("https://github.com/uyha/tree-sitter-cmake" "master" "src"))
+                ;; CONFIG
+                (dockerfile . ("https://github.com/camdencheek/tree-sitter-dockerfile" "main" "src"))
+                (gomod . ("https://github.com/camdencheek/tree-sitter-go-mod" "main" "src"))
+                ;; DATA
+                (json . ("https://github.com/tree-sitter/tree-sitter-json" "master" "src"))
+                (toml . ("https://github.com/tree-sitter/tree-sitter-toml" "master" "src"))
+                (yaml . ("https://github.com/ikatyang/tree-sitter-yaml" "master" "src"))))
 
 ;; Set *major-mode-remap-alist*
-(setq major-mode-remap-alist
-      '(;; BIN
-        (c-mode . c-ts-mode)
-        (c++-mode . c++-ts-mode)
-        (c-or-c++-mode . c-or-c++-ts-mode)
-        (rust-mode . rust-ts-mode)
-        (go-mode . go-ts-mode)
-        ;; JIT
-        (java-mode . java-ts-mode)
-        ;; VM
-        (python-mode . python-ts-mode)
-        ))
+(setq-default major-mode-remap-alist
+              '(;; BIN
+                (c-mode . c-ts-mode)
+                (c++-mode . c++-ts-mode)
+                (c-or-c++-mode . c-or-c++-ts-mode)
+                (rust-mode . rust-ts-mode)
+                (zig-mode . zig-ts-mode)
+                (go-mode . go-ts-mode)
+                ;; JIT
+                (csharp-mode . csharp-ts-mode)
+                (java-mode . java-ts-mode)
+                ;; VM
+                (python-mode . python-ts-mode)
+                (ruby-mode . ruby-ts-mode)
+                ;; WEB
+                (js-mode . js-ts-mode)
+                (typescript-mode . typescript-ts-mode)
+                (tsx-mode . tsx-ts-mode)
+                (css-mode . css-ts-mode)
+                ;; EMACS
+                (emacs-lisp-mode . emacs-lisp-ts-mode)
+                ;; SHELL
+                (bash-mode . bash-ts-mode)
+                ;; MAKE
+                (cmake-mode . cmake-ts-mode)
+                ;; CONFIG
+                (dockerfile-mode . dockerfile-ts-mode)
+                ;; DATA
+                (json-mode . json-ts-mode)
+                (toml-mode . toml-ts-mode)
+                (yaml-mode . yaml-ts-mode)))
+
+;; Set *treesit-load-name-override-list*
+(setq-default treesit-load-name-override-list '())
 
 ;; Def *tree-sitter-setup*
 (defun tree-sitter-setup ()
