@@ -17,6 +17,7 @@
 	},
 	"terminal": {
 		"font_family": "MesloLGS NF",
+		"line_height": "standard",
 		"shell": {
 			"program": "/usr/bin/zsh"
 		}
