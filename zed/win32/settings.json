@@ -18,6 +18,7 @@
 	"terminal": {
 		"font_family": "RobotoMono Nerd Font",
 		"line_height": "standard",
+		"blinking": "on",
 		"shell": {
 			"program": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
 		}
