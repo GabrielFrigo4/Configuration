@@ -4,8 +4,7 @@ set nocompatible
 set nobackup
 set hlsearch
 set nowrap
-filetype on
-filetype indent on
+filetype plugin indent on
 
 " Scheme
 syntax on

@@ -1,8 +1,7 @@
 vim.cmd([[
 " Basic Setup
 set nocompatible
-filetype on
-filetype indent on
+filetype plugin indent on
 
 " Scheme
 syntax on
