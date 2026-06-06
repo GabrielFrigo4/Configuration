@@ -1,0 +1,78 @@
+// Zed settings - Windows Profile (Native/Modern Style)
+{
+    // ==========================================================================
+    //  KEYBOARD
+    // ==========================================================================
+    "base_keymap": "VSCode",
+
+    // ==========================================================================
+    //  CORE & UI
+    // ==========================================================================
+    "ui_font_family": "JetBrainsMono Nerd Font Mono",
+    "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+    "ui_font_size": 16,
+    "buffer_font_size": 16,
+
+    "vim_mode": false,
+    "show_edit_predictions": false,
+    "hard_tabs": false,
+    "tab_size": 4,
+
+    "theme": {
+        "mode": "system",
+        "light": "One Light",
+        "dark": "One Dark"
+    },
+
+    "project_panel": {
+        "dock": "left"
+    },
+    "scrollbar": {
+        "show": "always",
+    },
+    "telemetry": {
+        "metrics": false
+    },
+
+    // ==========================================================================
+    //  LINGUAGENS & INDENTATION
+    // ==========================================================================
+    "languages": {
+        "Go": { "hard_tabs": true, "tab_size": 4 },
+        "Make": { "hard_tabs": true, "tab_size": 4 }
+    },
+
+    // ==========================================================================
+    //  TERMINAL & SHELL
+    // ==========================================================================
+    "terminal": {
+        "font_family": "JetBrainsMono Nerd Font Mono",
+        "line_height": "standard",
+        "blinking": "terminal_controlled",
+        "shell": {
+            "program": "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+        }
+    },
+
+    // ==========================================================================
+    //  LSP & TOOLS
+    // ==========================================================================
+    "lsp": {
+        "clangd": {
+            "binary": {
+                "path": "C:\\msys64\\clang64\\bin\\clangd.exe",
+                "arguments": [
+                    "--background-index",
+                    "--compile-commands-dir=build",
+                    "--clang-tidy",
+                    "--header-insertion=never"
+                ]
+            }
+        },
+        "rust-analyzer": {
+            "initialization_options": {
+                "checkOnSave": { "command": "check" }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+package_update: true
+
+packages:
+  - curl
+  - git
+  - build-essential
+  - openjdk-21-jdk
+  - unzip
+  - gzip
+
+runcmd:
+  - curl -fL "https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz" | gzip -d > /usr/local/bin/cs
+  - chmod +x /usr/local/bin/cs
+  - su - ubuntu -c "cs setup --yes"
+  - su - ubuntu -c "cs install metals"
+  - su - ubuntu -c "cs install mill"

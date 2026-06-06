@@ -1,0 +1,6 @@
+- [GLView](https://www.realtech-vr.com/home/)
+- [CUDA-Z](https://cuda-z.sourceforge.net/)
+- [TeX Live](https://www.tug.org/texlive/windows.html)
+- [VMWare](https://www.vmware.com/products/desktop-hypervisor/workstation-and-fusion)
+- [Npcap](https://npcap.com/#download)
+- [Quartus](https://www.intel.com.br/content/www/br/pt/collections/products/fpga/software/downloads.html?s=Newest)

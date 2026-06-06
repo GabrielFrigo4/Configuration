@@ -1,0 +1,3 @@
+PKG bootstrap --yes
+PKG update
+PKG upgrade --yes

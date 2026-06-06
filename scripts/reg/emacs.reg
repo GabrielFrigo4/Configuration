@@ -1,0 +1,16 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Environment]
+"EMACS_SERVER_FILE"="C:\\Users\\gabri\\.emacs.d\\var\\server\\auth\\server"
+
+[HKEY_CLASSES_ROOT\.el]
+@="el_auto_file"
+
+[HKEY_CLASSES_ROOT\el_auto_file\DefaultIcon]
+@="\"C:\\msys64\\ucrt64\\bin\\emacsclientw.exe\",0"
+
+[HKEY_CLASSES_ROOT\el_auto_file\shell\open\command]
+@="\"C:\\msys64\\ucrt64\\bin\\emacsclientw.exe\" --server-file \"C:\\Users\\gabri\\.emacs.d\\var\\server\\auth\\server\" --create-frame --alternate-editor \"\\\"C:\\msys64\\ucrt64\\bin\\runemacs.exe\\\" --init-directory \\\"C:\\Users\\gabri\\.emacs.d\\\"\" \"%1\""
+
+[HKEY_CLASSES_ROOT\Applications\emacsclientw.exe\shell\open\command]
+@="\"C:\\msys64\\ucrt64\\bin\\emacsclientw.exe\" --server-file \"C:\\Users\\gabri\\.emacs.d\\var\\server\\auth\\server\" --create-frame --alternate-editor \"\\\"C:\\msys64\\ucrt64\\bin\\runemacs.exe\\\" --init-directory \\\"C:\\Users\\gabri\\.emacs.d\\\"\" \"%1\""
