@@ -1794,11 +1794,12 @@ yay --needed --noconfirm -S code # or 'visual-studio-code-bin'
 
 # Google Antigravity OSS
 yay --needed --noconfirm -S antigravity
+yay --needed --noconfirm -S antigravity-ide
 
 # Alias Antigravity IDE
 cat << 'EOF' | sudo tee "/usr/bin/ant" > "/dev/null"
 #!/usr/bin/sh
-antigravity "$@"
+antigravity-ide "$@"
 EOF
 sudo chmod +x "/usr/bin/ant"
 
