@@ -1585,6 +1585,8 @@ yay --needed --noconfirm -S google-chrome
 # Communication
 yay --needed --noconfirm -S discord
 yay --needed --noconfirm -S zoom
+# Conversor
+yay --needed --noconfirm -S handbrake
 # Computation
 yay --needed --noconfirm -S scilab
 # Drawing
