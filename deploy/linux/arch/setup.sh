@@ -1191,6 +1191,7 @@ yay --needed --noconfirm -S ghc-libs
 
 # Tool
 yay --needed --noconfirm -S python-pytooling
+yay --needed --noconfirm -S python-pyautogui
 # Hack
 yay --needed --noconfirm -S python-pwntools
 # LLM
