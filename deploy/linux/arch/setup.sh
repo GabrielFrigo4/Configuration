@@ -1042,6 +1042,12 @@ yay --needed --noconfirm -S kde-applications
 yay --needed --noconfirm -S kde-utilities
 
 ### ################################
+### Installing GNOME Tools
+### ################################
+
+yay --needed --noconfirm -S gnome-screenshot
+
+### ################################
 ### Installing System Tools
 ### ################################
 
@@ -1192,6 +1198,7 @@ yay --needed --noconfirm -S ghc-libs
 # Tool
 yay --needed --noconfirm -S python-pytooling
 yay --needed --noconfirm -S python-pyautogui
+yay --needed --noconfirm -S python-pillow
 # Hack
 yay --needed --noconfirm -S python-pwntools
 # LLM
