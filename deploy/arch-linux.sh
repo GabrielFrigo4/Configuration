@@ -243,12 +243,6 @@ alias flatall="flatpak override --user --filesystem=host --share=ipc --share=net
 ### Setup Shell and Bash
 ### ################################
 
-curl -fsSL "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh" | bash -s -- --unattended
-curl -fsSL "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh" | sudo bash -s -- --unattended
-
-sed -i 's/OSH_THEME=".*"/OSH_THEME=""/' "${HOME}/.bashrc"
-sudo sed -i 's/OSH_THEME=".*"/OSH_THEME=""/' "/root/.bashrc"
-
 cat << 'EOF' | tee -a "${HOME}/.shrc" | tee -a "${HOME}/.bashrc" | sudo tee -a "/root/.shrc" | sudo tee -a "/root/.bashrc" > "/dev/null"
 ### ################################
 ### SHELL ENVIRONMENT
@@ -420,8 +414,6 @@ EOF
 ### ################################
 
 yay --needed --noconfirm -S zsh
-curl -fsSL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | zsh -s -- --unattended
-curl -fsSL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | sudo zsh -s -- --unattended
 sudo chsh -s "$(which zsh)" "$(id -un)"
 sudo chsh -s "$(which zsh)" "root"
 

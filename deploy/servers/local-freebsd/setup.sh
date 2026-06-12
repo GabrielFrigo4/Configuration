@@ -349,14 +349,6 @@ EOF
 ### Config Bash (User)
 ### ################################
 
-# Install Oh-My-Bash
-curl -fsSL "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh" | bash -s -- --unattended
-curl -fsSL "https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh" | sudo bash -s -- --unattended
-
-# Setup Oh-My-Bash
-sed -i '' 's/OSH_THEME=".*"/OSH_THEME=""/' "${HOME}/.bashrc"
-sudo sed -i '' 's/OSH_THEME=".*"/OSH_THEME=""/' "/root/.bashrc"
-
 # Config Bash
 cat << 'EOF' | tee -a "${HOME}/.bashrc" | sudo tee -a "/root/.bashrc" > "/dev/null"
 ### ################################
@@ -461,10 +453,6 @@ EOF
 ### ################################
 ### Config Zsh (User)
 ### ################################
-
-# Install Oh-My-Zsh
-curl -fsSL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | zsh -s -- --unattended
-curl -fsSL "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh" | sudo zsh -s -- --unattended
 
 # Config Zsh
 cat << 'EOF' | tee -a "${HOME}/.zshrc" | sudo tee -a "/root/.zshrc" > "/dev/null"
