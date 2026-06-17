@@ -972,19 +972,19 @@ EOF
 ### Setup Real Server
 ### ################################
 
-chmod 0600 "${HOME}/.key/ssh-key-frigo-server.key"
+chmod 0600 "${FRIGO_SERVER_KEY}"
 cat << 'EOF' | sudo tee "/usr/local/bin/frigo-server" > "/dev/null"
 #!/usr/bin/zsh
 source "${HOME}/.vault/servers/servers.env"
-ssh -i "${HOME}/.key/ssh-key-frigo-server.key" "ubuntu@${FRIGO_SERVER_IP}"
+ssh -i "${FRIGO_SERVER_KEY}" "ubuntu@${FRIGO_SERVER_IP}"
 EOF
 sudo chmod +x "/usr/local/bin/frigo-server"
 
-chmod 0600 "${HOME}/.key/ssh-key-orbs-server.key"
+chmod 0600 "${ORBS_SERVER_KEY}"
 cat << 'EOF' | sudo tee "/usr/local/bin/orbs-server" > "/dev/null"
 #!/usr/bin/zsh
 source "${HOME}/.vault/servers/servers.env"
-ssh -i "${HOME}/.key/ssh-key-orbs-server.key" "ubuntu@${ORBS_SERVER_IP}"
+ssh -i "${ORBS_SERVER_KEY}" "ubuntu@${ORBS_SERVER_IP}"
 EOF
 sudo chmod +x "/usr/local/bin/orbs-server"
 
