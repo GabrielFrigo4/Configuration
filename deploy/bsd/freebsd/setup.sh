@@ -844,7 +844,8 @@ EOF
 chmod 0600 "${HOME}/.key/ssh-key-frigo-server.key"
 cat << 'EOF' | sudo tee "/usr/local/bin/frigo-server" > "/dev/null"
 #!/bin/sh
-ssh -i "${HOME}/.key/ssh-key-frigo-server.key" "ubuntu@${FRIGO_IP}"
+source "${HOME}/.vault/servers/servers.env"
+ssh -i "${HOME}/.key/ssh-key-frigo-server.key" "ubuntu@${FRIGO_SERVER_IP}"
 EOF
 sudo chmod +x "/usr/local/bin/frigo-server"
 
@@ -852,7 +853,8 @@ sudo chmod +x "/usr/local/bin/frigo-server"
 chmod 0600 "${HOME}/.key/ssh-key-orbs-server.key"
 cat << 'EOF' | sudo tee "/usr/local/bin/orbs-server" > "/dev/null"
 #!/bin/sh
-ssh -i "${HOME}/.key/ssh-key-orbs-server.key" "ubuntu@${ORBS_IP}"
+source "${HOME}/.vault/servers/servers.env"
+ssh -i "${HOME}/.key/ssh-key-orbs-server.key" "ubuntu@${ORBS_SERVER_IP}"
 EOF
 sudo chmod +x "/usr/local/bin/orbs-server"
 
