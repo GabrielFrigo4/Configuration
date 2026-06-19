@@ -805,6 +805,7 @@ WordModeAttr=true
 
 [General]
 Command=/usr/local/bin/bash
+Environment=SHELL=/usr/local/bin/bash
 Name=Bash
 Parent=FALLBACK/
 
@@ -827,6 +828,7 @@ WordModeAttr=true
 
 [General]
 Command=/usr/local/bin/zsh
+Environment=SHELL=/usr/local/bin/zsh
 Name=Zsh
 Parent=FALLBACK/
 
