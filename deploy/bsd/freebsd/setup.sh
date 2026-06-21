@@ -8,9 +8,9 @@
 
 # GROUPS
 pw groupmod wheel -m "$(id -un)"
+pw groupmod operator -m "$(id -un)"
 pw groupmod video -m "$(id -un)"
 pw groupmod webcamd -m "$(id -un)"
-pw groupmod operator -m "$(id -un)"
 
 # PACKAGE
 pkg bootstrap --yes
