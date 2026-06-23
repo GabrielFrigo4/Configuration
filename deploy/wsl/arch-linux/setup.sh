@@ -159,9 +159,6 @@ cat << 'EOF' | tee -a "${HOME}/.config/nushell/config.nu" > "/dev/null"
 ### SHELL ENVIRONMENT
 ### ################################
 
-$env.config.buffer_editor = "code";
-$env.config.show_banner = false;
-
 ### ################################
 ### SHELL OH-MY-POSH
 ### ################################
@@ -169,72 +166,12 @@ $env.config.show_banner = false;
 source "~/.oh-my-posh.nu";
 
 ### ################################
-### WINDOWS FUNCTIONS
-### ################################
-
-# Manual FUNCTIONS
-def win-man [term: string] {
-	start $"https://learn.microsoft.com/en-us/search/?terms=($term)";
-};
-
-### ################################
-### UNIX FUNCTIONS
-### ################################
-
-# Manual FUNCTIONS
-def unix-man [section: string, command: string] {
-	mut number = $section;
-	if (not ('0123456789' | str contains ($section | str substring (-1..)))) {
-		$number = $section | str substring (..-2);
-	}
-	w3m $"https://www.man7.org/linux/man-pages/man($number)/($command).($section).html";
-};
-
-### ################################
 ### SHELL ALIAS
 ### ################################
-
-# Software ALIAS
-alias wh = which;
-alias show = start .;
-# Manual ALIAS
-alias wman = win-man;
-alias uman = unix-man;
-alias mandoc = unix-man;
-# Management ALIAS
-alias yays = yay -Ss;
-alias yayi = yay -S;
-alias yayr = yay -Rcns;
-alias yayu = yay -Syu;
-alias pac = pacman;
-alias pacs = pacman -Ss;
-alias paci = pacman -S;
-alias pacr = pacman -Rcns;
-alias pacu = pacman -Syu;
-# Goto ALIAS
-alias desk = cd "~/Área de trabalho";
-alias down = cd ~/Downloads;
-# Emacs ALIAS
-alias ek = pkill emacs;
-alias es = emacs --daemon;
-alias ec = emacsclient --create-frame --alternate-editor "";
-alias oe = emacsclient --create-frame --alternate-editor "" .;
-# Code Editors ALIAS
-alias oc = code .;
-alias ocm = codium .;
-alias on = nvim .;
-alias ov = vim .;
 
 ### ################################
 ### SHELL FUNCTIONS
 ### ################################
-
-# Management FUNC
-def upyay [] { yay --noconfirm -Syu };
-def upall [] { upyay };
-
-# Emacs FUNC
-def er [] { ek; es };
 
 ### ################################
 ### SHELL CONFIGURATION

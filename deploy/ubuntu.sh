@@ -6,17 +6,14 @@
 ### System and Hostname
 ### ################################
 
-
 OLD="$(hostname)"
 NEW="${OLD/"QID"/"QIN"}"
 hostnamectl set-hostname "${NEW}"
 sed -i "s/${OLD}/${NEW}/g" "/etc/hosts"
 
-
 ### ################################
 ### SUDO and DOAS
 ### ################################
-
 
 # SUDO Refresh
 sudo -v
@@ -28,11 +25,9 @@ permit persist :sudo
 EOF
 sudo chmod 0440 "/etc/doas.conf"
 
-
 ### ################################
 ### APT, Snap and Flatpak
 ### ################################
-
 
 # Update APT
 sudo apt update
@@ -54,11 +49,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 sudo rm "/etc/apt/apt.conf.d/20apt-esm-hook.conf"
 sudo touch "/etc/apt/apt.conf.d/20apt-esm-hook.conf"
 
-
 ### ################################
 ### Git
 ### ################################
-
 
 # Install Git
 sudo apt install --yes git
@@ -108,18 +101,15 @@ git config --global alias.qiclone '!f() { git clone -c user.email="gabriel.frigo
 ### VPN
 ### ################################
 
-
 # Install OpenVPN
 sudo apt install --yes network-manager-openvpn
 sudo apt install --yes network-manager-openvpn-gnome
 sudo apt install --yes network-manager-openconnect
 sudo apt install --yes network-manager-openconnect-gnome
 
-
 ### ################################
 ### CLI
 ### ################################
-
 
 # Install Eza
 sudo apt install --yes gpg
@@ -160,13 +150,11 @@ sudo apt install --yes pandoc
 # Install Micro
 sudo apt install --yes micro
 
-
 ################################################################################################
 
 ### ################################
 ### Gnome Softwares
 ### ################################
-
 
 # Install Tweaks
 sudo apt install --yes gnome-tweaks
@@ -179,11 +167,9 @@ sudo apt install --yes wl-clipboard
 sudo apt install --yes xclip
 sudo apt install --yes xsel
 
-
 ### ################################
 ### Gnome Terminal
 ### ################################
-
 
 # Install Gnome Terminal
 sudo apt install --yes gnome-terminal
@@ -191,11 +177,9 @@ sudo apt install --yes gnome-terminal
 # Setup Gnome Terminal
 sudo apt remove --yes nautilus-extension-gnome-terminal
 
-
 ### ################################
 ### Gnome Console
 ### ################################
-
 
 # Install Gnome Terminal
 sudo apt install --yes gnome-console
@@ -203,11 +187,9 @@ sudo apt install --yes gnome-console
 # Setup Gnome Terminal
 sudo apt install --yes nautilus-extension-gnome-console
 
-
 ### ################################
 ### Tilix
 ### ################################
-
 
 # Install Tilix
 sudo apt install --yes tilix
@@ -216,13 +198,11 @@ sudo apt install --yes tilix
 sudo update-alternatives --install "/usr/bin/x-terminal-emulator" "x-terminal-emulator" "/usr/bin/tilix" 255
 sudo update-alternatives --set "x-terminal-emulator" "/usr/bin/tilix"
 
-
 ################################################################################################
 
 ### ################################
 ### Google Chrome
 ### ################################
-
 
 # Install Google Chrome
 sudo apt install --yes curl apt-transport-https gdebi
@@ -230,11 +210,9 @@ wget "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 sudo gdebi google-chrome*
 rm "google-chrome-stable_current_amd64.deb"
 
-
 ### ################################
 ### Build Essential
 ### ################################
-
 
 # Install Build Essential
 sudo add-apt-repository --yes "ppa:ubuntu-toolchain-r/test"
@@ -324,22 +302,18 @@ for tool in $(coreutils --list); do
 	ln -sf "$(which coreutils)" "${HOME}/.local/bin/uutils/$tool"
 done
 
-
 ### ################################
 ### Library Essential
 ### ################################
-
 
 # Install Yaml Essential
 sudo apt install --yes libfyaml-dev
 sudo apt install --yes libfyaml-utils
 sudo apt install --yes libfyaml0
 
-
 ### ################################
 ### Python3
 ### ################################
-
 
 # Update Python
 sudo add-apt-repository --yes "ppa:deadsnakes/ppa"
@@ -379,11 +353,9 @@ sudo apt install --yes mypy
 # Install UV
 curl -LsSf https://astral.sh/uv/install.sh | bash
 
-
 ### ################################
 ### Lua
 ### ################################
-
 
 (
 	# Temporary Directory
@@ -422,13 +394,11 @@ curl -LsSf https://astral.sh/uv/install.sh | bash
 	rm -rf "luarocks"
 )
 
-
 ################################################################################################
 
 ### ################################
 ### Kitty
 ### ################################
-
 
 # Install Kitty
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | bash /dev/stdin
@@ -497,11 +467,9 @@ color7  #D0CFCC
 color15 #FFFFFF
 EOF
 
-
 ### ################################
 ### Ptyxis
 ### ################################
-
 
 # Install Ptyxis
 flatpak install flathub -y app.devsuite.Ptyxis
@@ -579,24 +547,20 @@ class PtyxisExtension(GObject.GObject, Nautilus.MenuProvider):
 EOF
 rm "${HOME}/.local/share/nautilus-python/extensions/open-ptyxis.py"
 
-
 ################################################################################################
 
 ### ################################
 ### LibreOffice
 ### ################################
 
-
 # Update LibreOffice
 sudo add-apt-repository --yes "ppa:libreoffice/ppa"
 sudo apt update
 sudo apt full-upgrade --yes
 
-
 ### ################################
 ### OnlyOffice
 ### ################################
-
 
 # Add GPG Key
 mkdir -p -m 700 "${HOME}/.gnupg"
@@ -612,11 +576,9 @@ echo 'deb [signed-by=/usr/share/keyrings/onlyoffice.gpg] https://download.onlyof
 sudo apt update
 sudo apt-get install onlyoffice-desktopeditors
 
-
 ### ################################
 ### Mermaid CLI
 ### ################################
-
 
 # Install Mermaid
 sudo npm install --global "@mermaid-js/mermaid-cli"
@@ -641,40 +603,32 @@ cat << 'EOF' | tee "${HOME}/.mermaid-theme-config.json" > "/dev/null"
 }
 EOF
 
-
 ### ################################
 ### GIMP
 ### ################################
 
-
 # Install GIMP
 sudo apt install --yes gimp
-
 
 ### ################################
 ### Krita
 ### ################################
 
-
 # Install Krita
 sudo apt install --yes krita
-
 
 ### ################################
 ### Inkspace
 ### ################################
 
-
 # Install Inkspace
 sudo apt install --yes inkscape
-
 
 ################################################################################################
 
 ### ################################
 ### Templates
 ### ################################
-
 
 # Empty File
 touch "${HOME}/Templates/Empty File"
@@ -879,11 +833,9 @@ soffice --headless --convert-to odf "${HOME}/Templates/Flat XML Math.mml" --outd
 mv "${HOME}/Templates/Flat XML Math.odf" "${HOME}/Templates/OpenDocument Math.odf"
 rm "${HOME}/Templates/Flat XML Math.mml"
 
-
 ### ################################
 ### Documents
 ### ################################
-
 
 # Make Documents
 mkdir -p "${HOME}/Documents/1) Git"
@@ -903,11 +855,9 @@ mkdir -p "${HOME}/Documents/3) Office/Math"
 mkdir -p "${HOME}/Documents/3) Office/Sheet"
 mkdir -p "${HOME}/Documents/3) Office/Slide"
 
-
 ### ################################
 ### Gnome Settings
 ### ################################
-
 
 TRANSPARENCY_VAL=10
 BG_COLOR="'#222222'"
@@ -937,11 +887,9 @@ dconf write "$T_PATH/bold-is-bright" "${BOLD_BRIGHT}"
 dconf write "$T_PATH/default-size-columns" "${COLS}"
 dconf write "$T_PATH/default-size-rows" "${ROWS}"
 
-
 ### ################################
 ### System Settings
 ### ################################
-
 
 # Unbind Show Desktop
 gsettings set "org.gnome.desktop.wm.keybindings" "show-desktop" "[]"
@@ -961,11 +909,9 @@ gsettings set "org.gnome.settings-daemon.plugins.media-keys" "www" "['<Control><
 # Launch Pesquisa (Search)
 gsettings set "org.gnome.settings-daemon.plugins.media-keys" "search" "['<Control><Alt>f']"
 
-
 ### ################################
 ### Custom Settings
 ### ################################
-
 
 # Function Create Launcher
 create_launcher() {
@@ -1011,7 +957,6 @@ create_launcher 10  "Launch Insomnia"       "insomnia"              "<Control><A
 create_launcher 11  "Launch Postman"        "postman"               "<Control><Alt>p"
 create_launcher 12  "Launch DBeaver"        "dbeaver-ce"            "<Control><Alt>d"
 
-
 ################################################################################################
 
 ### ################################
@@ -1020,11 +965,9 @@ create_launcher 12  "Launch DBeaver"        "dbeaver-ce"            "<Control><A
 
 sudo apt install --yes bash
 
-
 ### ################################
 ### Zsh
 ### ################################
-
 
 # Install Zsh
 sudo apt install --yes zsh
@@ -1035,22 +978,18 @@ sudo chsh -s "$(which zsh)" "root"
 
 # Setup Zsh
 
-
 ################################################################################################
 
 ### ################################
 ### Installing System Fonts
 ### ################################
 
-
 sudo apt install --yes fontconfig
 mkdir -p "${HOME}/.local/share/fonts"
-
 
 ### ################################
 ### Nerd Fonts
 ### ################################
-
 
 # https://www.nerdfonts.com/font-downloads
 # Install RobotoMono
@@ -1068,21 +1007,17 @@ rm -f "${HOME}/.local/share/fonts/OFL.txt"
 rm -f "${HOME}/.local/share/fonts/README.md"
 rm -f JetBrainsMono.zip
 
-
 ### ################################
 ### JetBrains Mono
 ### ################################
-
 
 # Install JetBrains Mono
 sudo apt install --yes fonts-jetbrains-mono
 bash -c "$(curl -fsSL "https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh")"
 
-
 ### ################################
 ### MesloLGS
 ### ################################
-
 
 # https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
 # MesloLGS NF Regular
@@ -1098,11 +1033,9 @@ mv "MesloLGS NF Italic.ttf" "${HOME}/.local/share/fonts"
 wget "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" -O "MesloLGS NF Bold Italic.ttf"
 mv "MesloLGS NF Bold Italic.ttf" "${HOME}/.local/share/fonts"
 
-
 ### ################################
 ### Nerd Font Symbols Only
 ### ################################
-
 
 # Setup Nerd Icons
 wget "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip" -O "NerdFontsSymbolsOnly.zip"
@@ -1112,22 +1045,18 @@ rm -f "${HOME}/.local/share/fonts/LICENSE"
 rm -f "${HOME}/.local/share/fonts/README.md"
 rm "NerdFontsSymbolsOnly.zip"
 
-
 ### ################################
 ### Update Font
 ### ################################
 
-
 # Update Font Cache
 fc-cache -f
-
 
 ################################################################################################
 
 ### ################################
 ### VS Code
 ### ################################
-
 
 # Automatically Setup VS Code
 echo "code code/add-microsoft-repo boolean true" | sudo debconf-set-selections
@@ -1151,12 +1080,9 @@ EOF
 sudo apt update
 sudo apt install --yes code
 
-
-
 ### ################################
 ### Zed
 ### ################################
-
 
 # Install Zed
 curl -f https://zed.dev/install.sh | bash
@@ -1164,11 +1090,9 @@ curl -f https://zed.dev/install.sh | bash
 # Create Alias
 sudo ln -sf "${HOME}/.local/bin/zed" "/usr/local/bin/zed"
 
-
 ### ################################
 ### Kate
 ### ################################
-
 
 # Install Kate
 flatpak install flathub -y org.kde.kate
@@ -1217,11 +1141,9 @@ cat << 'EOF' | tee "${HOME}/.var/app/org.kde.kate/config/konsolerc" > "/dev/null
 DefaultProfile=Profile NF.profile
 EOF
 
-
 ### ################################
 ### Emacs
 ### ################################
-
 
 # Install Emacs
 sudo add-apt-repository --yes "ppa:ubuntuhandbook1/emacs"
@@ -1284,11 +1206,9 @@ EOF
 # Update Doom Emacs
 ~/.config/emacs/bin/doom upgrade
 
-
 ### ################################
 ### NeoVim
 ### ################################
-
 
 # Install NeoVim
 wget -qO "/tmp/nvim.tar.gz" "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
@@ -1324,11 +1244,9 @@ vim.api.nvim_create_autocmd({ 'VimLeave', 'VimSuspend' }, {
 })
 EOF
 
-
 ### ################################
 ### Wireshark
 ### ################################
-
 
 # Install Wireshark
 sudo add-apt-repository --yes "ppa:wireshark-dev/stable"
@@ -1353,11 +1271,9 @@ QT_STYLE_OVERRIDE=Adwaita-Dark /usr/bin/wireshark "$@"
 EOF
 sudo chmod +x "/usr/local/bin/wireshark"
 
-
 ### ################################
 ### Insomnia
 ### ################################
-
 
 # Install Insomnia (repositório)
 curl -1sLf 'https://packages.konghq.com/public/insomnia/setup.deb.sh' | sudo -E bash
@@ -1369,31 +1285,25 @@ wget -O insomnia.deb "https://updates.insomnia.rest/downloads/ubuntu/latest"
 sudo apt install --yes ./insomnia.deb
 rm ./insomnia.deb
 
-
 ### ################################
 ### Postman
 ### ################################
 
-
 # Install Postman
 sudo snap install postman
-
 
 ### ################################
 ### DBeaver
 ### ################################
 
-
 # Install Postman
 sudo snap install dbeaver-ce --classic
-
 
 ################################################################################################
 
 ### ################################
 ### GCloud
 ### ################################
-
 
 # Setup GCloud
 curl -O "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-428.0.0-linux-x86_64.tar.gz"
@@ -1405,11 +1315,9 @@ gcloud auth login
 gcloud auth configure-docker "us-central1-docker.pkg.dev"
 gcloud components update
 
-
 ### ################################
 ### Docker
 ### ################################
-
 
 # Remove Previous Docker
 sudo apt remove --yes docker
@@ -1439,11 +1347,9 @@ sudo groupadd docker
 sudo usermod -aG docker "$(id -un)"
 newgrp docker
 
-
 ### ################################
 ### MySQL
 ### ################################
-
 
 # Install MySQL Client
 sudo apt install --yes mysql-client
@@ -1460,24 +1366,19 @@ sudo systemctl stop mysql.service
 # Disable MySQL Server
 sudo systemctl disable mysql.service
 
-
 ################################################################################################
-
 
 ### ################################
 ### QI Local
 ### ################################
 
-
 # Install QI Local
 python3.10 -m pip install "git+ssh://git@gitclone.qitech.com.br/QITech/qi-infra/corp/qilocal.git"
 python3.11 -m pip install "git+ssh://git@gitclone.qitech.com.br/QITech/qi-infra/corp/qilocal.git"
 
-
 ### ################################
 ### GitLab
 ### ################################
-
 
 # Clone QI Local
 git qiclone \
@@ -1504,11 +1405,9 @@ git qiclone \
 	"git@gitclone.qitech.com.br:qibaas/smart-pix-api.git" \
 	"${HOME}/Documents/1) Git/GitLab/smart-pix-api"
 
-
 ### ################################
 ### GitHub
 ### ################################
-
 
 # Clone Unix Socket Project
 git clone \
@@ -1519,7 +1418,6 @@ git clone \
 git clone \
 	"https://github.com/GabrielFrigo4/stdfrigo" \
 	"${HOME}/Documents/1) Git/GitHub/stdfrigo"
-
 
 ################################################################################################
 
