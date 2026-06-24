@@ -1,10 +1,13 @@
 # Configuration
 
-Este repositório centraliza todas as configurações de ferramentas, perfis, e os scripts de implantação (Deploy) do sistema.
+Repositório central de configurações de software, ferramentas de desenvolvimento e scripts de bootstrap do sistema.
 
 ## Estrutura
-- **deploy/**: Scripts de instalação do sistema operacional (monolitos enxutos).
-- **editors/**: Scripts de instalação para seus editores (Frameworks ou Git pessoal).
-- **formatters/**: Arquivos reais de configuração de linters e formatadores.
-- **profiles/**: Perfis de terminais (Nushell, Windows Terminal, etc).
-- **scripts/**: Scripts utilitários gerais.
+
+- **bootstrap/** — Scripts de instalação e preparação de máquinas (Linux, BSD, Windows, MSYS2, WSL, Servers).
+- **software/** — Configurações de software, organizadas por categoria:
+  - **editors/** — Editores de texto e código (Vim, Neovim, Emacs, Helix, Zed, VS Code, VSCodium, Antigravity).
+  - **terminals/** — Perfis de terminais e shells (Windows Terminal, Nushell, CMD/Clink, PowerShell).
+  - **tools/** — Configurações de linters, formatadores e LSPs (Clangd, Clang-Format, Prettier, StyLua).
+- **scripts/** — Utilitários organizados por domínio (conversores, build, Windows/registry).
+- **docs/** — Referências e anotações diversas.
