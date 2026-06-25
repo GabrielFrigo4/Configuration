@@ -29,11 +29,9 @@ $IsAdmin = [bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).gr
 $Machine = [Environment]::GetEnvironmentVariables([System.EnvironmentVariableTarget]::Machine)
 $User	= [Environment]::GetEnvironmentVariables([System.EnvironmentVariableTarget]::User)
 
-
 ### ################################
 ### NAVEGAÇÃO E EDIÇÃO
 ### ################################
-
 
 # Edição dos Profiles
 function Edit-Profile-Logic { notepad++ "${Home}\OneDrive\Documentos\PowerShell\profile.ps1" }
@@ -64,11 +62,9 @@ function Show-Virtual-Store { explorer.exe "${VIRTUAL_STORE}" }
 function Show-FASM-Store { explorer.exe "${FASM_STORE}" }
 function Show-Machine { explorer.exe "$SYSTEM32" }
 
-
 ### ################################
 ### SISTEMA E ADMINISTRAÇÃO
 ### ################################
-
 
 function Start-Admin {
 	param(
@@ -103,11 +99,9 @@ function Start-Console-Host-Admin {
 	Start-Admin -Name "conhost.exe" -Args $Args
 }
 
-
 ### ################################
 ### AMBIENTE E VARIÁVEIS
 ### ################################
-
 
 function Setx-User {
 	param(
@@ -167,22 +161,18 @@ function Get-IP {
 	}
 }
 
-
 ### ################################
 ### FERRAMENTAS
 ### ################################
-
 
 function Browser-Search {
 	param([parameter(ValueFromRemainingArguments=$true)][string[]] $Args)
 	lynx -use_mouse=on -nobrowse=on -nopause=on -show_cursor=off $Args
 }
 
-
 ### ################################
 ### ATUALIZAÇÃO
 ### ################################
-
 
 function Update-Winget { winget upgrade --all }
 
@@ -214,11 +204,9 @@ function Update-All {
 	Update-Windows
 }
 
-
 ### ################################
 ### MANUAIS E DOCUMENTAÇÃO
 ### ################################
-
 
 function Windows-Manual {
 	param([string]$term)
@@ -237,11 +225,9 @@ function Wsl-Manual {
 	wsl man $Args
 }
 
-
 ### ################################
 ### ALIASES
 ### ################################
-
 
 # Navigation / System
 New-Alias "show" "Show-Explorer"
@@ -288,7 +274,6 @@ function orbs-server { ssh -i "${Home}/.key/ssh-key-orbs-server.key" "ubuntu@${e
 ### EMACS ALIASES
 ### ################################
 
-
 # Kill Emacs (ek)
 function ek { taskkill /IM emacs.exe /F }
 
@@ -302,7 +287,6 @@ function ec { emacsclientw --create-frame --alternate-editor "" $args }
 function oe {
 	if ($args) { emacsclientw --create-frame --alternate-editor "" $args } else { emacsclientw --create-frame --alternate-editor "" . }
 }
-
 
 ### ################################
 ### CODE EDITORS ALIASES

@@ -2,7 +2,6 @@
 ### APARÊNCIA E INTERATIVIDADE
 ### ################################
 
-
 if ($Host.Name -eq 'ConsoleHost') {
 	# Terminal Icons
 	Import-Module Terminal-Icons

@@ -493,91 +493,6 @@ cargo install asm-lsp
 
 # Clang LSP
 sudo apt install --yes clangd
-mkdir -p "${HOME}/.config/clangd"
-cat << 'EOF' | tee "${HOME}/.config/clangd/config.yaml" > "/dev/null"
-CompileFlags:
-  Add:
-    - -Wformat=2
-    - -Wall
-    - -Wextra
-    - -Wvla
-    - -Wpedantic
-    - -Wshadow
-    - -Wconversion
-    - -Wsign-conversion
-    - -Werror
-    - -Wno-cpp
-    - -Wno-missing-field-initializers
-    - -Wno-unknown-warning-option
-    - -D_DEFAULT_SOURCE
-    - -D_POSIX_C_SOURCE=202405L
-    - -D_FORTIFY_SOURCE=2
-
----
-
-If:
-  PathMatch: .*\.(c|h)$
-CompileFlags:
-  Add: [-std=c23]
-
----
-
-If:
-  PathMatch: .*\.(cpp|cxx|cc|hpp|hxx)$
-CompileFlags:
-  Add: [-std=c++23]
-  Remove: [-std=c23]
-
----
-
-If:
-  PathMatch: .*\.h$
-CompileFlags:
-  Add: [-xc-header]
-EOF
-
-# Clang Formatter
-cat << 'EOF' | tee "${HOME}/.clang-format" > "/dev/null"
-BasedOnStyle: Microsoft
-
-AllowShortFunctionsOnASingleLine: Empty
-KeepEmptyLinesAtTheStartOfBlocks: false
-
-AlignAfterOpenBracket: BlockIndent
-BinPackArguments: false
-PenaltyBreakAssignment: 4096
-ColumnLimit: 96
-
-UseTab: ForIndentation
-AccessModifierOffset: -4
-IndentWidth: 4
-TabWidth: 4
-EOF
-
-# Prettier Formatter
-cat << 'EOF' | tee "${HOME}/.prettierrc" > "/dev/null"
-{
-	"printWidth": 96,
-	"tabWidth": 4,
-	"useTabs": true,
-	"semi": true,
-	"singleQuote": false,
-	"trailingComma": "all",
-	"bracketSpacing": true,
-	"arrowParens": "always"
-}
-EOF
-
-# StyLua Formatter
-cat << 'EOF' | tee "${HOME}/.stylua.toml" > "/dev/null"
-column_width = 96
-line_endings = "Unix"
-indent_type = "Tabs"
-indent_width = 4
-quote_style = "AutoPreferDouble"
-call_parentheses = "Always"
-collapse_simple_statement = "Never"
-EOF
 
 ### ################################################################################################################################
 
@@ -640,30 +555,6 @@ sudo luarocks install lpeg
 
 # New STD Libraries
 sudo luarocks install penlight
-
-### ################################################################################################################################
-
-### ################################
-### Mermaid CLI
-### ################################
-
-cat << 'EOF' | tee "${HOME}/.mermaid-puppeteer-config.json" > "/dev/null"
-{
-	"executablePath": "/usr/bin/google-chrome-stable",
-	"args": ["--no-sandbox"]
-}
-EOF
-
-cat << 'EOF' | tee "${HOME}/.mermaid-theme-config.json" > "/dev/null"
-{
-	"theme": "dark",
-	"themeVariables": {
-		"fontFamily": "\"JetBrainsMonoNL Nerd Font Mono\", Monospace, Consolas",
-		"fontSize": "24px",
-		"darkMode": true
-	}
-}
-EOF
 
 ### ################################################################################################################################
 
@@ -741,10 +632,6 @@ mkdir -p "${HOME}/.config/nvim"
 git clone "https://github.com/GabrielFrigo4/nvim.git" "${HOME}/.config/nvim"
 # Vim
 git clone "https://github.com/GabrielFrigo4/vimfiles.git" "${HOME}/vimfiles"
-cat << 'EOF' | tee "${HOME}/.vimrc" > "/dev/null"
-set rtp+=~/vimfiles
-source ~/vimfiles/vimrc
-EOF
 # Helix
 git clone "https://github.com/GabrielFrigo4/helix.git" "${HOME}/.config/helix"
 cat << 'EOF' | tee "${HOME}/.local/bin/hx" > "/dev/null"

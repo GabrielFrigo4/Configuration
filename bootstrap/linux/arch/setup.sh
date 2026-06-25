@@ -407,94 +407,6 @@ fc-cache -f
 
 ### ################################################################################################################################
 
-### ################################
-### Setup Konsole Profiles
-### ################################
-
-cat << 'EOF' | tee "${HOME}/.local/share/konsole/Bash.profile" > "/dev/null"
-[Appearance]
-AntiAliasFonts=true
-ColorScheme=Breath
-Font=JetBrainsMono Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-FontFeatures=liga,calt
-UseFontBrailleChararacters=true
-UseFontLineChararacters=true
-# WordMode=true
-WordMode=false
-WordModeAttr=true
-
-[General]
-Command=/bin/bash
-Name=Bash
-Parent=FALLBACK/
-
-[Terminal Features]
-BlinkingCursorEnabled=true
-EOF
-
-cat << 'EOF' | tee "${HOME}/.local/share/konsole/Zsh.profile" > "/dev/null"
-[Appearance]
-AntiAliasFonts=true
-ColorScheme=Breath
-Font=JetBrainsMono Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-FontFeatures=liga,calt
-UseFontBrailleChararacters=true
-UseFontLineChararacters=true
-# WordMode=true
-WordMode=false
-WordModeAttr=true
-
-[General]
-Command=/bin/zsh
-Name=Zsh
-Parent=FALLBACK/
-
-[Terminal Features]
-BlinkingCursorEnabled=true
-EOF
-
-cat << 'EOF' | tee "${HOME}/.local/share/konsole/Nushell.profile" > "/dev/null"
-[Appearance]
-AntiAliasFonts=true
-ColorScheme=Breath
-Font=JetBrainsMono Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-FontFeatures=liga,calt
-UseFontBrailleChararacters=true
-UseFontLineChararacters=true
-# WordMode=true
-WordMode=false
-WordModeAttr=true
-
-[General]
-Command=/bin/nu
-Name=Nushell
-Parent=FALLBACK/
-
-[Terminal Features]
-BlinkingCursorEnabled=true
-EOF
-
-cat << 'EOF' | tee "${HOME}/.local/share/konsole/PowerShell.profile" > "/dev/null"
-[Appearance]
-AntiAliasFonts=true
-ColorScheme=Breath
-Font=JetBrainsMono Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-FontFeatures=liga,calt
-UseFontBrailleChararacters=true
-UseFontLineChararacters=true
-# WordMode=true
-WordMode=false
-WordModeAttr=true
-
-[General]
-Command=/bin/pwsh
-Name=PowerShell
-Parent=FALLBACK/
-
-[Terminal Features]
-BlinkingCursorEnabled=true
-EOF
-
 ### ################################################################################################################################
 
 ### ################################
@@ -833,93 +745,6 @@ yay --needed --noconfirm -S stylua
 # Assembly LSP
 yay --needed --noconfirm -S asm-lsp
 
-# Clang LSP
-mkdir -p "${HOME}/.config/clangd"
-cat << 'EOF' | tee "${HOME}/.config/clangd/config.yaml" > "/dev/null"
-CompileFlags:
-  Add:
-    - -Wformat=2
-    - -Wall
-    - -Wextra
-    - -Wvla
-    - -Wpedantic
-    - -Wshadow
-    - -Wconversion
-    - -Wsign-conversion
-    - -Werror
-    - -Wno-cpp
-    - -Wno-missing-field-initializers
-    - -Wno-unknown-warning-option
-    - -D_DEFAULT_SOURCE
-    - -D_POSIX_C_SOURCE=202405L
-    - -D_FORTIFY_SOURCE=2
-
----
-
-If:
-  PathMatch: .*\.(c|h)$
-CompileFlags:
-  Add: [-std=c23]
-
----
-
-If:
-  PathMatch: .*\.(cpp|cxx|cc|hpp|hxx)$
-CompileFlags:
-  Add: [-std=c++23]
-  Remove: [-std=c23]
-
----
-
-If:
-  PathMatch: .*\.h$
-CompileFlags:
-  Add: [-xc-header]
-EOF
-
-# Clang Formatter
-cat << 'EOF' | tee "${HOME}/.clang-format" > "/dev/null"
-BasedOnStyle: Microsoft
-
-AllowShortFunctionsOnASingleLine: Empty
-KeepEmptyLinesAtTheStartOfBlocks: false
-
-AlignAfterOpenBracket: BlockIndent
-BinPackArguments: false
-PenaltyBreakAssignment: 4096
-ColumnLimit: 96
-
-UseTab: ForIndentation
-AccessModifierOffset: -4
-IndentWidth: 4
-TabWidth: 4
-EOF
-
-# Prettier Formatter
-cat << 'EOF' | tee "${HOME}/.prettierrc" > "/dev/null"
-{
-	"printWidth": 96,
-	"tabWidth": 4,
-	"useTabs": true,
-	"semi": true,
-	"singleQuote": false,
-	"trailingComma": "all",
-	"bracketSpacing": true,
-	"arrowParens": "always"
-}
-EOF
-
-# StyLua Formatter
-cat << 'EOF' | tee "${HOME}/.stylua.toml" > "/dev/null"
-column_width = 96
-line_endings = "Unix"
-indent_type = "Tabs"
-indent_width = 4
-quote_style = "AutoPreferDouble"
-call_parentheses = "Always"
-collapse_simple_statement = "Never"
-EOF
-
 ### ################################################################################################################################
 
 ### ################################
@@ -1059,10 +884,6 @@ mkdir -p "${HOME}/.config/nvim"
 git clone "https://github.com/GabrielFrigo4/nvim.git" "${HOME}/.config/nvim"
 # Vim
 git clone "https://github.com/GabrielFrigo4/vimfiles.git" "${HOME}/vimfiles"
-cat << 'EOF' | tee "${HOME}/.vimrc" > "/dev/null"
-set rtp+=~/vimfiles
-source ~/vimfiles/vimrc
-EOF
 # Helix
 git clone "https://github.com/GabrielFrigo4/helix.git" "${HOME}/.config/helix"
 cat << 'EOF' | sudo tee "/usr/bin/hx" > "/dev/null"
@@ -1240,24 +1061,6 @@ sudo virsh --connect qemu:///system net-start default
 ### ################################
 
 yay --needed --noconfirm -S mermaid-cli
-
-cat << 'EOF' | tee "${HOME}/.mermaid-puppeteer-config.json" > "/dev/null"
-{
-	"executablePath": "/usr/bin/google-chrome-stable",
-	"args": ["--no-sandbox"]
-}
-EOF
-
-cat << 'EOF' | tee "${HOME}/.mermaid-theme-config.json" > "/dev/null"
-{
-	"theme": "dark",
-	"themeVariables": {
-		"fontFamily": "\"JetBrainsMonoNL Nerd Font Mono\", Monospace, Consolas",
-		"fontSize": "24px",
-		"darkMode": true
-	}
-}
-EOF
 
 ### ################################
 ### Installing Postgres

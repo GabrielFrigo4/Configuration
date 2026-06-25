@@ -1,19 +1,15 @@
 @ECHO OFF
 
-
 REM ################################
 REM # SETUP
 REM ################################
 
-
 :: Text Encode (UTF-8)
 chcp 65001 > NUL
-
 
 REM ################################
 REM # VARS
 REM ################################
-
 
 :: Envirionment Variables
 set "HOME=%USERPROFILE%"
@@ -34,11 +30,9 @@ set "FASM2_STORE=%VIRTUAL_STORE%\Program Files\FASM2"
 set "FASMG_STORE=%VIRTUAL_STORE%\Program Files\FASMG"
 set "FASMARM_STORE=%VIRTUAL_STORE%\Program Files\FASMARM"
 
-
 REM ################################
 REM # CMD APPEARANCE
 REM ################################
-
 
 :: "Clink Pure"
 :: oh-my-posh init cmd --config "%HOME%\.oh-my-posh\themes\pure.omp.json" > "%HOME%\.oh-my-posh.lua"

@@ -2,16 +2,13 @@
 ### SHELL ENVIRONMENT
 ### ################################
 
-
 $env.config.buffer_editor = "notepad++";
 $env.config.show_banner = false;
 $env.HOME = $"($env.USERPROFILE)";
 
-
 ### ################################
 ### SHELL VARIABLES
 ### ################################
-
 
 let Home = $"($env.USERPROFILE)";
 let System32 = "C:\\Windows\\System32";
@@ -27,32 +24,26 @@ let FASM2_STORE = $"($VIRTUAL_STORE)\\Program Files\\FASM2";
 let FASMG_STORE = $"($VIRTUAL_STORE)\\Program Files\\FASMG";
 let FASMARM_STORE = $"($VIRTUAL_STORE)\\Program Files\\FASMARM";
 
-
 ### ################################
 ### SHELL OH-MY-POSH
 ### ################################
-
 
 # "In Nushell"
 # oh-my-posh init nu --config $"($Home)/.oh-my-posh/themes/atomic.omp.json" | save -f $"($Home)/.oh-my-posh.nu";
 source "~/.oh-my-posh.nu";
 
-
 ### ################################
 ### WINDOWS FUNCTIONS
 ### ################################
-
 
 # Manual FUNCTIONS
 def win-man [term: string] {
 	start $"https://learn.microsoft.com/en-us/search/?terms=($term)";
 };
 
-
 ### ################################
 ### UNIX FUNCTIONS
 ### ################################
-
 
 # Manual FUNCTIONS
 def unix-man [section: string, command: string] {
@@ -63,11 +54,9 @@ def unix-man [section: string, command: string] {
 	wsl w3m $"https://www.man7.org/linux/man-pages/man($number)/($command).($section).html";
 };
 
-
 ### ################################
 ### SHELL ALIAS
 ### ################################
-
 
 # Software ALIAS
 alias wh = which;
@@ -119,11 +108,9 @@ alias oz = zed .;
 alias on = nvim .;
 alias ov = vim .;
 
-
 ### ################################
 ### SHELL FUNCTIONS
 ### ################################
-
 
 # Management FUNCTIONS
 def upscp [] { scoop update; scoop update --all };
@@ -139,7 +126,6 @@ def oa [] {
 	let app = $"($env.LOCALAPPDATA)\\Programs\\Antigravity\\Antigravity.exe"
 	^cmd /c start "" $app "."
 }
-
 
 ### ################################
 ### SHELL CONFIGURATION

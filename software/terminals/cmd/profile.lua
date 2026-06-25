@@ -2,7 +2,6 @@
 -- # Startup
 -- ################################
 
-
 local function CLINK_DIR() return [[C:\Program Files\Shell\clink]] end
 local function SYSTEM32_DIR() return [[C:\Windows\System32]] end
 local function SYSTEM32_PATH(file) return SYSTEM32_DIR() .. [[\]] .. file end
@@ -11,11 +10,9 @@ local startup = {
 	cwd = os.getcwd(),
 }
 
-
 -- ################################
 -- # System
 -- ################################
-
 
 local function exists(path)
 	local ok, err, code = os.rename(path, path)
@@ -45,21 +42,17 @@ local current = {
 	dir = nil,
 }
 
-
 -- ################################
 -- # Constant
 -- ################################
-
 
 local function IO_POPEN_SIZE() return 0 end
 local function DEFAULT_USER_NAME() return "gabriel" end
 local function DEFAULT_BRANCH_DATA() return "" end
 
-
 -- ################################
 -- # Functions
 -- ################################
-
 
 -- String
 local function trim(s)
@@ -188,11 +181,9 @@ local function extract_prompt(prompt)
 	return prompt_info
 end
 
-
 -- ################################
 -- # Constant Colors
 -- ################################
-
 
 -- Default
 local function GET_RESET() return "\x1b[0m" end
@@ -210,11 +201,9 @@ local function GET_MAGENTA() return "5" end
 local function GET_CYAN() return "6" end
 local function GET_WHITE() return "7" end
 
-
 -- ################################
 -- # Functions Colors
 -- ################################
-
 
 -- Color Create
 local function create_rgb_color(r, g, b)
@@ -363,22 +352,18 @@ local function background_bright_white(str)
 	return set_background_bright_color(GET_WHITE()) .. str .. GET_RESET()
 end
 
-
 -- ################################
 -- # Variables
 -- ################################
-
 
 local admin = get_admin()
 local user = get_user()
 local info = get_win_info()
 local icon = get_win_icon()
 
-
 -- ################################
 -- # Appearance
 -- ################################
-
 
 local pf = clink.promptfilter(10)
 function pf:filter(prompt)
@@ -434,7 +419,6 @@ end
 -- ################################
 -- # Aliases
 -- ################################
-
 
 local aliases = {
 	-- ################################
@@ -540,11 +524,9 @@ if clink.onfilterinput then
 	clink.onfilterinput(filter_alias)
 end
 
-
 -- ################################
 -- # Lua Command (LuaCMD)
 -- ################################
-
 
 local lua_commands = {
 	["lc"] = true,

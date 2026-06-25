@@ -583,26 +583,6 @@ sudo apt-get install onlyoffice-desktopeditors
 # Install Mermaid
 sudo npm install --global "@mermaid-js/mermaid-cli"
 
-# Setup Mermaid Puppeteer
-cat << 'EOF' | tee "${HOME}/.mermaid-puppeteer-config.json" > "/dev/null"
-{
-	"executablePath": "/usr/bin/google-chrome-stable",
-	"args": ["--no-sandbox"]
-}
-EOF
-
-# Setup Mermaid Theme
-cat << 'EOF' | tee "${HOME}/.mermaid-theme-config.json" > "/dev/null"
-{
-	"theme": "dark",
-	"themeVariables": {
-		"fontFamily": "\"JetBrainsMonoNL Nerd Font Mono\", Monospace, Consolas",
-		"fontSize": "24px",
-		"darkMode": true
-	}
-}
-EOF
-
 ### ################################
 ### GIMP
 ### ################################

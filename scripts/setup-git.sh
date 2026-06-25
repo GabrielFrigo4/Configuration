@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Load variables from Vault
-source "../../Vault/config.env"
+source "${HOME}/.vault/config.env"
 
 rm -f "${HOME}/.gitconfig"
 git config --global credential.helper "!gh auth git-credential"
