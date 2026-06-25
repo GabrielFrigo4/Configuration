@@ -1,0 +1,23 @@
+# Planos Futuros (TODO)
+
+Este documento centraliza as próximas evoluções arquiteturais e de limpeza planejadas para este repositório de configuração.
+
+## 1. Modularização do Bootstrap
+- Modularizar intensamente o diretório `/bootstrap`.
+- Quebrar os scripts monolíticos legados em componentes menores, reaproveitáveis e organizados, similar ao modelo focado de "uma coisa, um lugar".
+
+## 2. Refatoração FreeBSD
+- Extrair os heredocs de criação de arquivos do FreeBSD, seguindo a mesma estratégia de refatoração aplicada ao Linux e ao Windows.
+- **Atenção especial:** O Konsole no FreeBSD não é igual ao do Linux (por exemplo, paths e shells diferem, como `/usr/local/bin/zsh`), exigindo profiles adaptados e não apenas cópias diretas.
+
+## 3. Limpeza de Comentários
+- Fazer uma varredura para remover comentários `#` (shell) ou `rem` (cmd) desnecessários ou excessivamente literais em todos os scripts.
+- Focar no padrão visual já estabelecido de blocos delimitadores com múltiplos caracteres (`### ################################`) para separar as seções, mantendo o código conciso e legível.
+
+## 4. Auditoria de Softwares
+- Limpar comandos redundantes.
+- Remover pacotes e softwares desnecessários que possam estar inflando os scripts de instalação e poluindo o sistema do host.
+
+## 5. Evolução para Containers
+- Alterar a filosofia do ambiente para um modelo focado em **Containers** em vez de instalar e jogar todas as dependências de desenvolvimento e banco de dados diretamente no host.
+- Atingir sistemas compatíveis como Linux e FreeBSD (para o Windows não haverá grandes mudanças nesse escopo específico).
