@@ -1,5 +1,0 @@
-- Pixel Art Studio Free
-- MSIX Packaging Tool
-- Microsoft PC Manager
-- File Downloader
-- Aquile Reader

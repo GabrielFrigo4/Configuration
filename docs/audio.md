@@ -1,2 +1,0 @@
-- [Simple Protocol Player](https://github.com/kaytat/simpleprotocolplayer)
-- [IP Webcam](https://play.google.com/store/apps/details?id=com.pas.webcam&hl=pt_BR&pli=1)
