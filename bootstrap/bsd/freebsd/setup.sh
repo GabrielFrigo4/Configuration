@@ -52,11 +52,19 @@ EOF
 ### Setup Environment (User)
 ### ################################
 
-# XDG / FREEDESKTOP
-pkg install --yes xdg-utils
-
 # SDDM
 sudo chown -R sddm:sddm "/var/lib/sddm"
+sudo sysrc sddm_enable="NO"
+
+# LY
+sudo pkg install --yes ly
+sudo sysrc ly_enable="NO"
+sudo sed -i '.bak' -E 's|^[#[:space:]]*ttyv8.*|ttyv8   "/usr/local/bin/ly"         xterm   on  secure|' "/etc/ttys"
+
+# XORG
+cat << "EOF" | tee "${HOME}/.xinitrc" > "/dev/null"
+exec ck-launch-session dbus-run-session startplasma-x11
+EOF
 
 ### ################################
 ### Setup Workspace (User)
