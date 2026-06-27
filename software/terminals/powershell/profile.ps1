@@ -2,6 +2,9 @@
 ### CONFIGURAÇÕES GERAIS E AMBIENTE
 ### ################################
 
+# Configurar Vault
+. "${HOME}\.vault\vault.ps1"
+
 # Força UTF-8 para Compatibilidade
 $PSDefaultparameterValues['*:Encoding'] = 'utf8'
 

@@ -7,6 +7,9 @@ REM ################################
 :: Text Encode (UTF-8)
 chcp 65001 > NUL
 
+:: Vault Setup
+%USERPROFILE%\.vault\vault.cmd
+
 REM ################################
 REM # VARS
 REM ################################

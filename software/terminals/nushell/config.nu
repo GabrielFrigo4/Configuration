@@ -6,6 +6,8 @@ $env.config.buffer_editor = "notepad++";
 $env.config.show_banner = false;
 $env.HOME = $"($env.USERPROFILE)";
 
+source ~/.vault/vault.nu
+
 ### ################################
 ### SHELL VARIABLES
 ### ################################
