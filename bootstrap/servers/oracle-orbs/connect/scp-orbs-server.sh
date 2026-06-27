@@ -1,5 +1,2 @@
 #!/usr/bin/env sh
-### ================================
-### Requires: Vault/servers.env loaded (ORBS_IP variable)
-### ================================
-scp -r -i "${HOME}/.key/ssh-key-orbs-server.key" "${1}" "ubuntu@${ORBS_SERVER_IP}:/home/ubuntu/${1}"
+scp -r -i "${ORBS_SERVER_KEY}" "${1}" "ubuntu@${ORBS_SERVER_IP}:/home/ubuntu/${1}"

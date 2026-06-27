@@ -265,10 +265,10 @@ New-Alias "wsl-man" "Wsl-Manual"
 ### ################################
 
 # Start Frigo Server SSH
-function frigo-server { ssh -i "${Home}/.key/ssh-key-frigo-server.key" "ubuntu@${env:FRIGO_IP}" }
+function frigo-server { ssh -i "${env:FRIGO_SERVER_KEY}" "ubuntu@${env:FRIGO_SERVER_IP}" }
 
 # Start Orbs Server SSH
-function orbs-server { ssh -i "${Home}/.key/ssh-key-orbs-server.key" "ubuntu@${env:ORBS_IP}" }
+function orbs-server { ssh -i "${env:ORBS_SERVER_KEY}" "ubuntu@${env:ORBS_SERVER_IP}" }
 
 ### ################################
 ### EMACS ALIASES
@@ -285,54 +285,64 @@ function ec { emacsclientw --create-frame --alternate-editor "" $args }
 
 # Open Emacs (oe)
 function oe {
-	if ($args) { emacsclientw --create-frame --alternate-editor "" $args } else { emacsclientw --create-frame --alternate-editor "" . }
+	$app = "emacsclientw"
+	$target = if ($args) { $args } else { "." }
+	$argList = @("--create-frame", "--alternate-editor", '""', $target)
+	Start-Process -FilePath $app -ArgumentList $argList -WindowStyle Hidden
 }
 
 ### ################################
 ### CODE EDITORS ALIASES
 ### ################################
 
-# Open VS Code (oc)
-function oc {
-	if ($args) { code $args } else { code . }
-}
-
-# Open VSCodium (ocm)
-function ocm {
-	if ($args) { codium $args } else { codium . }
-}
-
-# Open Antigravity (oa)
-function oa {
-	$antigravity = "$env:LOCALAPPDATA\Programs\Antigravity\Antigravity.exe"
-	if ($args) {
-		Start-Process -FilePath $antigravity -ArgumentList $args
-	} else {
-		Start-Process -FilePath $antigravity -ArgumentList $PWD.Path
-	}
-}
-
-# Open Zed (oz)
-function oz {
-	if ($args) { zed $args } else { zed . }
-}
-
 # Open Neovim (on)
 function on {
-	if ($args) { nvim $args } else { nvim . }
+	$app = "nvim"
+	$target = if ($args) { $args } else { "." }
+	& $app $target
 }
 
 # Open Vim (ov)
 function ov {
-	if ($args) { vim $args } else { vim . }
+	$app = "vim"
+	$target = if ($args) { $args } else { "." }
+	& $app $target
+}
+
+# Open VS Code (oc)
+function oc {
+	$app = "code"
+	$target = if ($args) { $args } else { "." }
+	Start-Process -FilePath $app -ArgumentList $target -WindowStyle Hidden
+}
+
+# Open VSCodium (ocm)
+function ocm {
+	$app = "codium"
+	$target = if ($args) { $args } else { "." }
+	Start-Process -FilePath $app -ArgumentList $target -WindowStyle Hidden
+}
+
+# Open Zed (oz)
+function oz {
+	$app = "zed"
+	$target = if ($args) { $args } else { "." }
+	Start-Process -FilePath $app -ArgumentList $target -WindowStyle Hidden
+}
+
+# Open Antigravity (oa)
+function oa {
+	$app = "antigravity-ide"
+	$target = if ($args) { $args } else { "." }
+	Start-Process -FilePath $app -ArgumentList $target -WindowStyle Hidden
 }
 
 # Antigravity (ant)
 function ant {
-	$antigravity = "$env:LOCALAPPDATA\Programs\Antigravity\Antigravity.exe"
+	$app = "antigravity-ide"
 	if ($args) {
-		Start-Process -FilePath $antigravity -ArgumentList $args
+		Start-Process -FilePath $app -ArgumentList $args -WindowStyle Hidden
 	} else {
-		Start-Process -FilePath $antigravity
+		Start-Process -FilePath $app -WindowStyle Hidden
 	}
 }

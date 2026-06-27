@@ -94,19 +94,19 @@ alias Show-Virtual-Store = explorer.exe $"($VIRTUAL_STORE)";
 alias Show-FASM-Store = explorer.exe $"($FASM_STORE)";
 alias Show-Machine = explorer.exe $"($System32)";
 # Server ALIAS
-alias frigo-server = ssh -i "$Home/.key/ssh-key-frigo-server.key" $"ubuntu@($env.FRIGO_IP)";
-alias orbs-server = ssh -i "$Home/.key/ssh-key-orbs-server.key" $"ubuntu@($env.ORBS_IP)";
+alias frigo-server = ssh -i $"($env.FRIGO_SERVER_KEY)" $"ubuntu@($env.FRIGO_SERVER_IP)";
+alias orbs-server = ssh -i $"($env.ORBS_SERVER_KEY)" $"ubuntu@($env.ORBS_SERVER_IP)";
 # Emacs ALIAS
 alias ek = taskkill /IM emacs.exe /F;
 alias es = runemacs --fg-daemon;
 alias ec = emacsclientw --create-frame --alternate-editor "";
 alias oe = emacsclientw --create-frame --alternate-editor "" .;
 # Code Editors ALIAS
+alias ov = vim .;
+alias on = nvim .;
 alias oc = code .;
 alias ocm = codium .;
 alias oz = zed .;
-alias on = nvim .;
-alias ov = vim .;
 
 ### ################################
 ### SHELL FUNCTIONS
@@ -118,13 +118,19 @@ def upall [] { upget; upscp; upcho };
 # Emacs FUNCTIONS
 def er [] { ek; es };
 # Antigravity FUNCTIONS
-def ant [] {
-	let app = $"($env.LOCALAPPDATA)\\Programs\\Antigravity\\Antigravity.exe"
-	^cmd /c start "" $app
+def oa [...args: string] {
+	let app = "antigravity-ide"
+	let target = if ($args | is-empty) { "." } else { $args | str join " " }
+	^pwsh -NoProfile -Command $"Start-Process -FilePath '($app)' -ArgumentList '($target)' -WindowStyle Hidden"
 }
-def oa [] {
-	let app = $"($env.LOCALAPPDATA)\\Programs\\Antigravity\\Antigravity.exe"
-	^cmd /c start "" $app "."
+def ant [...args: string] {
+	let app = "antigravity-ide"
+	if ($args | is-empty) {
+		^pwsh -NoProfile -Command $"Start-Process -FilePath '($app)' -WindowStyle Hidden"
+	} else {
+		let args_str = ($args | str join " ")
+		^pwsh -NoProfile -Command $"Start-Process -FilePath '($app)' -ArgumentList '($args_str)' -WindowStyle Hidden"
+	}
 }
 
 ### ################################

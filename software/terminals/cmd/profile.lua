@@ -429,21 +429,21 @@ local aliases = {
 	["upcho"] = [[sudo wt choco upgrade all]],
 	["upall"] = [[winget upgrade --all && scoop update && scoop update --all && sudo wt choco upgrade all]],
 
-	["frigo-server"] = [[ssh -i "%HOME%/.key/ssh-key-frigo-server.key" "ubuntu@]] .. os.getenv("FRIGO_IP") .. [["]],
-	["orbs-server"] = [[ssh -i "%HOME%/.key/ssh-key-orbs-server.key" "ubuntu@]] .. os.getenv("ORBS_IP") .. [["]],
+	["frigo-server"] = [[ssh -i ]] .. os.getenv("FRIGO_SERVER_KEY") .. [[ "ubuntu@]] .. os.getenv("FRIGO_SERVER_IP") .. [["]],
+	["orbs-server"] = [[ssh -i ]] .. os.getenv("ORBS_SERVER_KEY") .. [[ "ubuntu@]] .. os.getenv("ORBS_SERVER_IP") .. [["]],
 
 	["ek"] = [[taskkill /IM emacs.exe /F]],
 	["es"] = [[runemacs --fg-daemon]],
 	["er"] = [[taskkill /IM emacs.exe /F && runemacs --fg-daemon]],
 	["ec"] = [[emacsclientw.exe --create-frame --alternate-editor ""]],
 	["oe"] = [[emacsclientw.exe --create-frame --alternate-editor "" .]],
+	["ov"] = [[vim .]],
+	["on"] = [[nvim .]],
 	['oc'] = [[code .]],
 	['ocm'] = [[codium .]],
-	['oa'] = [[%LOCALAPPDATA%\Programs\Antigravity\Antigravity.exe .]],
+	['oa'] = [[antigravity-ide .]],
 	['oz'] = [[zed .]],
-	["on"] = [[nvim .]],
-	["ov"] = [[vim .]],
-	['ant'] = [[%LOCALAPPDATA%\Programs\Antigravity\Antigravity.exe]],
+	['ant'] = [[antigravity-ide]],
 
 	-- ################################
 	-- # Console and Terminal
