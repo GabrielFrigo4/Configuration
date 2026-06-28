@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 sudo systemctl enable --now lxc-net.service
 sudo systemctl enable --now lxc.service

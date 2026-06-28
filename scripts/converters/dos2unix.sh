@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 TARGET_EXTENSIONS='-name "*.sh" -o -name "*.ps1" -o -name "*.lua" -o -name "*.cmd" -o -name "*.md" -o -name "*.nu"'
 

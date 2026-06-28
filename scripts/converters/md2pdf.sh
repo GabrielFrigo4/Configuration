@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 if [[ -z "${1}" || ! -d "${1}" ]]; then
 	echo -e "\e[31mErro: Forneça um diretório válido.\e[0m"
