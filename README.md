@@ -2,30 +2,38 @@
 
 Repositório central de configurações de software, ferramentas de desenvolvimento e scripts de bootstrap do sistema.
 
-## 📂 Project Structure
+## 🧠 Filosofia e Arquitetura
 
-O repositório é organizado de forma modular, seguindo a filosofia de "uma coisa, um lugar". A configuração do sistema está separada da configuração dos softwares, o que simplifica a manutenção e adaptação para diferentes sistemas operacionais.
+Este projeto não é apenas um repositório de "dotfiles", mas a base de uma arquitetura estrita e bem definida baseada em três pilares centrais:
 
-- **`bootstrap/`** — Scripts monolíticos e modulares de instalação e bootstrap de sistemas operacionais limpos (Arch Linux, Debian, Windows, MSYS2). Automatizam a instalação de pacotes essenciais, setup inicial de rede, virtualização, etc.
-- **`software/`** — Configurações específicas e scripts de setup dos softwares utilizados pelo usuário. Todos os arquivos dotfiles (`.clang-format`, `settings.json`, profiles) vivem aqui.
-    - **`editors/`** — Instalação e profiles do Emacs, NeoVim, Vim, Helix, Zed, VS Code e derivados.
-    - **`terminals/`** — Perfis e configurações de ambientes de terminal (Nushell, PowerShell, Konsole, CMD).
-    - **`tools/`** — Configuração global de formatadores, linters (Prettier, StyLua, Clangd) e utilitários de linha de comando.
-- **`scripts/`** — Scripts utilitários de uso diário (conversão de mídia, configuração do git usando Vault, customizações do registro do Windows).
-- **`docs/`** — Documentação detalhada sobre ambientes (KDE Wayland/X11, Polkit), tabelas de referências, downloads manuais, guias e dicas gerais do ecossistema.
+1. **"Clean Host" (Isolamento Extremo):** O sistema operacional nativo (o _host_) deve permanecer o mais puro e limpo possível. Ele é responsável **apenas** por prover a interface gráfica (Wayland/X11, via KDE Plasma), os drivers de hardware, os editores de código (IDEs) e a camada de virtualização/hypervisor. Nenhuma linguagem de programação, banco de dados ou framework de desenvolvimento é instalado diretamente no host.
+2. **"Uma coisa, um lugar" (Modularidade):** O ecossistema é quebrado em repositórios e módulos distintos. A configuração do sistema está estritamente separada do comportamento dinâmico do terminal e do gerenciamento de segredos.
+3. **Reprodutibilidade e Segurança:** Uso massivo do sistema de arquivos **ZFS** como base para snapshots, criptografia nativa e restauração rápida, aliado a tecnologias de isolamento (Jails/Containers/Hypervisors).
+
+> 📖 **Leitura Obrigatória:** Para entender a essência deste ecossistema, leia o documento de [Filosofia (PHILOSOPHY.md)](docs/PHILOSOPHY.md) e os detalhes sobre [Containers](docs/CONTAINERS.md) e [Hypervisors](docs/HYPERVISORS.md).
+
+## 📂 Estrutura do Projeto
+
+- **[`bootstrap/`](bootstrap/README.md)** — Scripts de instalação e provisionamento inicial de sistemas operacionais limpos (Arch Linux, Debian, FreeBSD, Windows). Automatizam a instalação do ecossistema base (ZFS, ferramentas de virtualização, rede).
+- **[`software/`](software/README.md)** — Configurações estáticas e "dotfiles" dos softwares do host.
+    - **`editors/`** — Instalação e profiles (Emacs, NeoVim, Helix, VS Code, etc).
+    - **`terminals/`** — Perfis e configurações estáticas de terminal (Konsole, Windows Terminal).
+    - **`tools/`** — Configuração global de formatadores e linters essenciais do host.
+- **[`scripts/`](scripts/README.md)** — Scripts utilitários para tarefas gerais do sistema operacional.
+- **[`docs/`](docs/README.md)** — Toda a documentação detalhada da arquitetura, hypervisors, conteinerização e especificidades de ambientes (BSD, KDE).
 
 ## 🚀 Getting Started
 
-Este repositório foi construído para não exigir nenhuma dependência prévia do sistema além de uma instalação limpa (a partir da ISO) e do comando `git`.
+Este repositório foi construído para não exigir nenhuma dependência prévia do sistema além de uma instalação limpa e o comando `git`.
 
-1. Clone o repositório em sua máquina recém-instalada.
+1. Clone o repositório na sua máquina recém-instalada.
 2. Navegue até o diretório correspondente ao seu sistema operacional dentro de `bootstrap/`.
-3. Execute o script mestre de instalação para configurar automaticamente os pacotes essenciais, redes e dependências básicas do sistema.
-4. Após o bootstrap do sistema, execute os scripts dentro de `software/` para baixar seus dotfiles de editores e terminais.
+3. Execute o script mestre de instalação para configurar automaticamente pacotes base, ZFS, hypervisors e dependências do ambiente.
+4. Após o bootstrap do sistema, aplique as configurações dentro de `software/`.
 
-## 🔗 Ecossistema
+## 🔗 O Ecossistema da Tríade
 
-Este repositório de Configurações faz parte de um ecossistema pessoal para setup automático de ambientes. Ele trabalha em conjunto com outras peças fundamentais que devem ser clonadas e configuradas:
+Este repositório trabalha em conjunto com outras duas peças fundamentais que completam o sistema:
 
-- **[Shell](https://github.com/GabrielFrigo4/Shell)**: Scripts utilitários, aliases e lógicas de terminal de uso diário. Veja a [documentação do Shell](docs/SHELL.md).
-- **[Vault](https://github.com/GabrielFrigo4/Vault)** (Privado): Gerenciamento de credenciais, chaves SSH e variáveis sensíveis. Veja a [documentação do Vault](docs/VAULT.md).
+- **[Shell](https://github.com/GabrielFrigo4/Shell)**: Scripts utilitários, comportamento ativo, aliases e lógicas dinâmicas de terminal. Diferente de configurações estáticas, aqui vive o "motor" do shell. Veja a [documentação do Shell](docs/SHELL.md).
+- **[Vault](https://github.com/GabrielFrigo4/Vault)** (Privado): O cofre do ecossistema. Gerenciamento estrito de chaves SSH, credenciais, e variáveis de ambiente sensíveis. Veja a [documentação do Vault](docs/VAULT.md).

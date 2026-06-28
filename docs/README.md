@@ -1,10 +1,24 @@
-# Documentação
+# Documentação do Repositório
 
-Esta pasta contém anotações, referências, guias e detalhamentos sobre os ambientes suportados por este repositório de configuração.
+Esta pasta contém o detalhamento arquitetural, técnico e filosófico de todo o ambiente provisionado por este repositório. O entendimento destes documentos é fundamental para a manutenção correta do projeto.
 
-## Arquivos
+## A Bíblia do Projeto
 
-- [references.md](references.md) — Centraliza links úteis, downloads manuais, ferramentas essenciais, utilitários da Microsoft Store e outras indicações curadas de softwares não disponíveis via gerenciadores de pacotes.
-- [KDE.md](KDE.md) — Anotações sobre o ambiente gráfico KDE Plasma (versão 6), Polkit, permissões via `pkexec` e uso em Wayland.
+- **[PHILOSOPHY.md](PHILOSOPHY.md)** — A regra de ouro: "Clean Host", ZFS e Modularidade (Configuration vs Shell vs Vault). Leia este primeiro.
 
-_Observação: Ao longo do desenvolvimento deste repositório, mais guias de instalação, documentação sobre configuração de editores ou tutoriais avançados poderão ser adicionados a este diretório._
+## Infraestrutura e Isolamento
+
+- **[CONTAINERS.md](CONTAINERS.md)** — Isolamento de SO sem VMs pesadas. Documentação sobre Bastille/Jails (FreeBSD) e Incus/LXC (Linux).
+- **[HYPERVISORS.md](HYPERVISORS.md)** — Virtualização completa, ZVOLs e a estratégia de hardware. bhyve (FreeBSD), KVM (Linux) e Hyper-V/WSL2 (Windows).
+
+## O Ecossistema (A Tríade)
+
+Além deste repositório de `Configuration`, outros dois repositórios complementam o sistema. Entenda como eles se integram:
+
+- **[SHELL.md](SHELL.md)** — Regras sobre quais shells usamos (sh, bash, zsh vs pwsh, nushell) e onde o repositório ativo "Shell" deve ser instalado.
+- **[VAULT.md](VAULT.md)** — Gerenciamento de credenciais privadas, tokens e chaves seguras.
+
+## Notas sobre Ambientes Específicos
+
+- **[BSD.md](BSD.md)** — Particularidades vitais do FreeBSD (Caminhos em `/usr/local/`, Jails e perfis Konsole).
+- **[KDE.md](KDE.md)** — Dicas sobre o ambiente gráfico (Plasma Wayland/X11, pkexec e Polkit).

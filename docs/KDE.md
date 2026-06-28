@@ -1,35 +1,38 @@
-# Ambiente KDE (Plasma)
+# 🖥️ Ambiente KDE (Plasma) e a Camada do Host
 
-Anotações e dicas sobre o ambiente gráfico KDE Plasma, utilizado primariamente no Arch Linux e no Debian neste repositório.
+A interface gráfica é o componente mais pesado que tem a permissão de rodar diretamente no _Host_ (conforme as diretrizes de [Filosofia](PHILOSOPHY.md)). Escolhemos o **KDE Plasma 6** por oferecer a melhor integração entre Wayland moderno, customização absoluta e suporte sólido a ferramentas gráficas.
 
-## Versão do KDE
+## Por que o KDE no Host Limpo?
 
-O repositório é otimizado para o **KDE Plasma 6**, garantindo suporte às versões mais recentes do ambiente e do ecossistema Qt6.
+Manter o KDE diretamente no host (seja no Arch, Debian ou FreeBSD) garante que a aceleração de hardware (GPU), drivers de vídeo e gerenciamento de monitores ocorram sem overhead de virtualização, entregando o desempenho nativo necessário para rodar nossos hypervisors, Jails e Incus confortavelmente.
 
-## Polkit
+## Segurança e Wayland
 
-[Polkit](https://en.wikipedia.org/wiki/Polkit) (anteriormente PolicyKit) é um componente para controlar privilégios em todo o sistema em sistemas operacionais do tipo Unix. Ele fornece uma maneira organizada para que processos não privilegiados se comuniquem com os privilegiados. O Polkit permite um nível de controle da política do sistema centralizado.
+A partir do KDE Plasma 6, a sessão padrão utilizada é o **Wayland**. Isso corrobora perfeitamente com a nossa filosofia de segurança e isolamento.
+
+- **Isolamento de Janelas:** Diferente do X11, onde qualquer programa (keylogger, app antigo) pode ler a tela de outros aplicativos, o Wayland isola as superfícies graficas estritamente.
+- **Variáveis Ambientais:** Certifique-se de usar `QT_QPA_PLATFORM=wayland` se precisar forçar aplicativos teimosos (mas lembre-se, quase tudo que não é editor roda isolado num container de qualquer forma).
+- O **Konsole** possui suporte de primeira classe ao Wayland, provendo escalonamento e renderização nítidos para interagir com a infraestrutura.
+
+## Polkit: Gerenciamento de Privilégios
+
+Como não fazemos login de `root` para utilizar a interface gráfica, e limitamos ao máximo o uso do `sudo` indiscriminado no host, dependemos fortemente do **Polkit** (PolicyKit) para autorizar ações específicas (como gerenciar redes ou partições).
 
 ### Autenticação Gráfica
 
-Para garantir que janelas que solicitam permissão de root (como o GParted, ou outros utilitários) funcionem corretamente e não falhem com erros de Polkit, é necessário que o agente de autenticação esteja rodando.
+Para garantir que janelas que solicitam permissões (como o GParted, ou utilitários de discos ZFS) não quebrem silenciosamente, o agente de autenticação deve estar rodando em background.
 
-**Caminho do Agente:**
+**Caminho do Agente (Arch Linux/Debian):**
 `/usr/lib/polkit-kde-authentication-agent-1`
+
+_(Se você notar que popups de senha não estão aparecendo no KDE, é porque esse agente falhou em iniciar)_.
 
 ### pkexec
 
-O `pkexec` permite executar comandos ou aplicações gráficas como outro usuário (geralmente root) utilizando a infraestrutura do Polkit para a caixa de diálogo de autenticação.
+Para rodar aplicações gráficas esporádicas no host com permissão de root, evite o `sudo` puro e utilize o `pkexec`. Ele invoca a janela gráfica padrão do KDE (via Polkit) para autorização, mantendo a consistência do ambiente gráfico.
 
-Exemplo de uso:
+Exemplo seguro:
 
 ```bash
 pkexec gparted
 ```
-
-## Dicas Adicionais (Wayland vs X11)
-
-A partir do KDE Plasma 6, a sessão padrão passou a ser o **Wayland**. Isso influencia como as configurações de tela e aplicativos funcionam.
-
-- Certifique-se de usar variáveis ambientais corretas se precisar rodar aplicativos X11 antigos ou se houver problemas de escalonamento (`QT_QPA_PLATFORM=wayland`).
-- O Konsole possui suporte completo ao Wayland, com escalonamento nítido e bom desempenho.
