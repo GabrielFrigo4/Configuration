@@ -32,3 +32,8 @@ Todas as ações aqui descritas são guiadas pela busca da nossa filosofia princ
 
 - Alterar a filosofia do ambiente para um modelo focado em **Containers** em vez de instalar e jogar todas as dependências de desenvolvimento e banco de dados diretamente no host.
 - Atingir sistemas compatíveis como Linux e FreeBSD (para o Windows não haverá grandes mudanças nesse escopo específico).
+
+## 7. Macrorit no Windows
+
+- Atualizar o Macrorit (Partition Expert)
+- Remover do Chocolatey (antigo) e mover para um novo
