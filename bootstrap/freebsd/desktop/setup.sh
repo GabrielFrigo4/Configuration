@@ -58,7 +58,6 @@ sudo sysrc sddm_enable="NO"
 
 # LY
 sudo pkg install --yes ly
-sudo sysrc ly_enable="NO"
 cat << "EOF" | sudo tee "/usr/local/bin/ly-wrapper" > "/dev/null"
 #!/bin/sh
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
@@ -67,7 +66,7 @@ exec /usr/local/bin/ly
 EOF
 sudo chmod +x "/usr/local/bin/ly-wrapper"
 if ! grep -q "^Ly:" "/etc/gettytab"; then
-    printf "\nLy:\\\n\t:lo=/usr/local/bin/ly-wrapper:\\\n\t:al=root:tc=Pc:\n" | sudo tee -a "/etc/gettytab" > "/dev/null"
+	printf "\nLy:\\\n\t:lo=/usr/local/bin/ly-wrapper:\\\n\t:al=root:tc=Pc:\n" | sudo tee -a "/etc/gettytab" > "/dev/null"
 fi
 sudo sed -i '.bak' -E 's|^[#[:space:]]*ttyv1.*|ttyv1   "/usr/libexec/getty Ly"         xterm   on  secure|' "/etc/ttys"
 
