@@ -65,7 +65,7 @@ sudo pkg install --yes gh
 
 # GIT CONFIG
 rm "${HOME}/.gitconfig"
-git config --global credential.helper "!gh auth git-credential"
+git config --global credential.helper '!gh auth git-credential'
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "Gabriel Frigo"
 git config --global init.defaultBranch "main"

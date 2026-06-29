@@ -184,7 +184,7 @@ sudo apt install --yes "./gcm.deb"
 rm "./gcm.deb"
 
 rm "${HOME}/.gitconfig"
-git config --global credential.helper "!gh auth git-credential"
+git config --global credential.helper '!gh auth git-credential'
 git config --global init.defaultBranch "main"
 git config --global pull.rebase false
 git config --global color.ui auto
