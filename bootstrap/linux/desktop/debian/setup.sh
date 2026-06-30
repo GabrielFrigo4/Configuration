@@ -156,17 +156,8 @@ sudo apt install --yes "./gcm.deb"
 rm "./gcm.deb"
 
 # Git Config
-rm "${HOME}/.gitconfig"
-git config --global credential.helper '!gh auth git-credential'
-git config --global user.email "${GIT_EMAIL}"
-git config --global user.name "Gabriel Frigo"
-git config --global init.defaultBranch "main"
-git config --global pull.rebase false
-git config --global color.ui auto
-
-# GitHub Config
-gh auth login
-gh auth setup-git
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+. "${SCRIPT_DIR}/../../../common/git.sh"
 
 ### ################################
 ### Setup LXC
@@ -267,69 +258,10 @@ sudo apt install --yes ttf-mscorefonts-installer
 sudo apt install --yes fonts-crosextra-carlito
 
 ### ################################
-### RobotoMono Nerd Fonts
+### Nerd Fonts
 ### ################################
 
-# https://www.nerdfonts.com/font-downloads
-wget "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/RobotoMono.zip" -O "RobotoMono.zip"
-unzip -o RobotoMono.zip -d "${HOME}/.local/share/fonts"
-rm -f "${HOME}/.local/share/fonts/LICENSE.txt"
-rm -f "${HOME}/.local/share/fonts/README.md"
-rm -f RobotoMono.zip
-
-### ################################
-### JetBrains Nerd Fonts
-### ################################
-
-# https://www.nerdfonts.com/font-downloads
-wget "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip" -O "JetBrainsMono.zip"
-unzip -o JetBrainsMono.zip -d "${HOME}/.local/share/fonts"
-rm -f "${HOME}/.local/share/fonts/OFL.txt"
-rm -f "${HOME}/.local/share/fonts/README.md"
-rm -f JetBrainsMono.zip
-
-### ################################
-### MesloLGS Nerd Fonts
-### ################################
-
-# https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k
-# MesloLGS NF Regular
-wget "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf" -O "MesloLGS NF Regular.ttf"
-mv "MesloLGS NF Regular.ttf" "${HOME}/.local/share/fonts"
-# MesloLGS NF Bold
-wget "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf" -O "MesloLGS NF Bold.ttf"
-mv "MesloLGS NF Bold.ttf" "${HOME}/.local/share/fonts"
-# MesloLGS NF Italic
-wget "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" -O "MesloLGS NF Italic.ttf"
-mv "MesloLGS NF Italic.ttf" "${HOME}/.local/share/fonts"
-# MesloLGS NF Bold Italic
-wget "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" -O "MesloLGS NF Bold Italic.ttf"
-mv "MesloLGS NF Bold Italic.ttf" "${HOME}/.local/share/fonts"
-
-### ################################
-### JetBrains Mono Nerd Fonts
-### ################################
-
-# https://github.com/JetBrains/JetBrainsMono
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
-
-### ################################
-### Nerd Font Symbols Only
-### ################################
-
-# https://www.nerdfonts.com/font-downloads
-wget "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.zip" -O "NerdFontsSymbolsOnly.zip"
-unzip -o "NerdFontsSymbolsOnly.zip" -d "${HOME}/.local/share/fonts"
-rm -f "${HOME}/.local/share/fonts/10-nerd-font-symbols.conf"
-rm -f "${HOME}/.local/share/fonts/LICENSE"
-rm -f "${HOME}/.local/share/fonts/README.md"
-rm "NerdFontsSymbolsOnly.zip"
-
-### ################################
-### Update Font Cache
-### ################################
-
-fc-cache -f
+. "${SCRIPT_DIR}/../../../common/fonts.sh"
 
 ### ################################################################################################################################
 
