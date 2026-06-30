@@ -1,3 +1,2 @@
-#!/usr/bin/env sh
-# Placeholder for MSYS2 configuration scripts
+﻿#!/usr/bin/env sh
 echo "Running MSYS2 configurations..."

@@ -1,3 +1,2 @@
-#!/usr/bin/env sh
-# Placeholder for FreeBSD configuration scripts
+﻿#!/usr/bin/env sh
 echo "Running FreeBSD configurations..."

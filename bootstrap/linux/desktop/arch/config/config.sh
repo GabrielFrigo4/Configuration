@@ -1,3 +1,2 @@
-#!/usr/bin/env sh
-# Placeholder for Arch Linux configuration scripts
+﻿#!/usr/bin/env sh
 echo "Running Arch Linux configurations..."
