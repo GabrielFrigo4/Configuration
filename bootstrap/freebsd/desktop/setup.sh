@@ -209,6 +209,7 @@ sudo pkg install --yes fusefs-ext2
 ### ################################
 
 sudo make -C "/usr/ports/misc/antigravity-cli" install clean
+sudo pkg install antigravity-cli
 agy login
 
 ### ################################
