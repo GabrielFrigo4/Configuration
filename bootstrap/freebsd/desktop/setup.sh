@@ -109,7 +109,7 @@ sudo service bastille start
 ### ################################
 
 sudo sysrc linux_enable="YES"
-sudo kldload linux64
+sudo service linux start
 
 ### ################################################################################################################################
 
@@ -203,6 +203,13 @@ sudo pkg install --yes fusefs-ntfs
 sudo pkg install --yes fusefs-ext2
 
 ### ################################################################################################################################
+
+### ################################
+### Installing Antigravity
+### ################################
+
+sudo make -C "/usr/ports/misc/antigravity-cli" install clean
+agy login
 
 ### ################################
 ### Installing Editor

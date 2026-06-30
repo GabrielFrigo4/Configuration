@@ -37,3 +37,9 @@ Todas as ações aqui descritas são guiadas pela busca da nossa filosofia princ
 
 - Atualizar o Macrorit (Partition Expert)
 - Remover do Chocolatey (antigo) e mover para um novo
+
+
+## 8. Firefox Clipboard
+ - Colocar em um README como Configurar o Clipboard do Firefox
+ - about:config
+ - dom.events.testing.asyncClipboard = True
