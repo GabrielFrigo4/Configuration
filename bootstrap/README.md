@@ -11,12 +11,27 @@ A função real destes scripts é:
 3. Preparar a fundação de virtualização e containers (Incus, LXC, Bastille, bhyve, Hyper-V).
 4. Preparar o ambiente gráfico (KDE Plasma, Wayland).
 
+## Estrutura
+
+```
+bootstrap/
+├── common/         # Lógica compartilhada entre SOs (sourced, nunca executada diretamente)
+├── freebsd/
+│   ├── desktop/    # FreeBSD com KDE (setup, fonts, gui)
+│   ├── server/     # FreeBSD server (setup + connect scripts)
+│   └── dev/        # Scripts de desenvolvimento (para Jails/Containers)
+├── linux/
+│   └── desktop/
+│       ├── arch/   # Arch Linux / Manjaro
+│       └── debian/ # Debian
+└── windows/
+    ├── config/     # Configurações do Windows
+    ├── msys2/      # Ambiente MSYS2
+    └── wsl/        # Windows Subsystem for Linux
+```
+
 ## Como Usar
 
-Cada subdiretório ou script está agrupado por Sistema Operacional:
+Cada subdiretório contém scripts agrupados por Sistema Operacional. Geralmente, execute o script `setup.sh` referente à sua plataforma logo após instalar a ISO do sistema e configurar a internet básica.
 
-- `/arch-linux.sh`
-- `/ubuntu.sh`
-- `/windows.ps1` / `/windows.cmd`
-
-Geralmente, você deve rodar o script mestre referente à sua plataforma logo após instalar a ISO do sistema e configurar a internet básica.
+Para detalhes sobre a arquitetura de modularização, veja [`docs/BOOTSTRAP.md`](../docs/BOOTSTRAP.md).

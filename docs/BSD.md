@@ -32,3 +32,16 @@ Não instalamos dependências de desenvolvimento no host FreeBSD. Em vez disso:
 ### 3. Hypervisors (bhyve)
 
 Para executar código que exige um kernel Linux ou para virtualizar outras instâncias, tiramos proveito do **bhyve**, o hypervisor nativo do FreeBSD. Em conjunto com ZVOLs (discos virtuais baseados em ZFS), criamos máquinas virtuais de altíssima performance para complementar nosso ambiente _Clean Host_. Veja a documentação de [Hypervisors](HYPERVISORS.md).
+
+### 4. Konsole Profiles no FreeBSD
+
+Os perfis do Konsole no FreeBSD **não são** cópias diretas dos perfis Linux presentes em `software/terminals/konsole/`. Existem duas diferenças fundamentais:
+
+- **Caminhos dos Shells:** No FreeBSD, bash e zsh estão em `/usr/local/bin/`, não em `/bin/`. Portanto, os profiles usam `Command=/usr/local/bin/bash` e `Command=/usr/local/bin/zsh`.
+- **Shell.profile (Exclusivo do FreeBSD):** Um perfil adicional que configura `Environment=SHELL_INIT=1,SHELL_TARGET=/bin/sh` e `Command=/bin/sh`, utilizado pelo ecossistema Shell para inicialização controlada.
+
+Os profiles do FreeBSD são gerenciados pelo script `bootstrap/freebsd/desktop/gui.sh` e não pelo diretório `software/terminals/konsole/`.
+
+### 5. Display Manager (LY)
+
+No FreeBSD desktop, utilizamos o **LY** como display manager padrão em vez do SDDM. O LY é um TUI login manager leve que funciona diretamente no TTY, evitando dependências pesadas de display managers gráficos. O SDDM é instalado pelo `desktop-installer` mas é desabilitado explicitamente pelo nosso bootstrap.

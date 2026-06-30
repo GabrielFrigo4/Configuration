@@ -8,6 +8,7 @@ Esta pasta contém o detalhamento arquitetural, técnico e filosófico de todo o
 
 ## Infraestrutura e Isolamento
 
+- **[BOOTSTRAP.md](BOOTSTRAP.md)** — Arquitetura de modularização dos scripts de bootstrap: o papel de `common/`, `dev/`, e a regra "poucos scripts, zero duplicação".
 - **[CONTAINERS.md](CONTAINERS.md)** — Isolamento de SO sem VMs pesadas. Documentação sobre Bastille/Jails (FreeBSD) e Incus/LXC (Linux).
 - **[HYPERVISORS.md](HYPERVISORS.md)** — Virtualização completa, ZVOLs e a estratégia de hardware. bhyve (FreeBSD), KVM (Linux) e Hyper-V/WSL2 (Windows).
 

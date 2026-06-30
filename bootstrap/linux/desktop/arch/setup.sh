@@ -414,17 +414,15 @@ fc-cache -f
 ### ################################
 
 chmod 0600 "${FRIGO_SERVER_KEY}"
-cat << 'EOF' | sudo tee "/usr/local/bin/frigo-server" > "/dev/null"
-#!/usr/bin/zsh
-source "${HOME}/.vault/servers/servers.env"
+cat << EOF | sudo tee "/usr/local/bin/frigo-server" > "/dev/null"
+#!/bin/sh
 ssh -i "${FRIGO_SERVER_KEY}" "ubuntu@${FRIGO_SERVER_IP}"
 EOF
 sudo chmod +x "/usr/local/bin/frigo-server"
 
 chmod 0600 "${ORBS_SERVER_KEY}"
-cat << 'EOF' | sudo tee "/usr/local/bin/orbs-server" > "/dev/null"
-#!/usr/bin/zsh
-source "${HOME}/.vault/servers/servers.env"
+cat << EOF | sudo tee "/usr/local/bin/orbs-server" > "/dev/null"
+#!/bin/sh
 ssh -i "${ORBS_SERVER_KEY}" "ubuntu@${ORBS_SERVER_IP}"
 EOF
 sudo chmod +x "/usr/local/bin/orbs-server"
