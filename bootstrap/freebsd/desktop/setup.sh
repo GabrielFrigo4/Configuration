@@ -151,6 +151,14 @@ sudo pkg install --yes bastille
 sudo sysrc bastille_enable="YES"
 sudo service bastille start
 
+### ################################
+### Setup Linuxlator (User)
+### ################################
+
+# LINUXLATOR
+sudo sysrc linux_enable="YES"
+sudo kldload linux64
+
 ### ################################################################################################################################
 
 ### ################################
