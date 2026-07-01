@@ -55,3 +55,9 @@ Todas as ações aqui descritas são guiadas pela busca da nossa filosofia princ
 - Maneira Simples de Subistituir Bhyve para cenarios mais simples (Jails / Bastille)
 - Usar no Host como uma extensão do catalogo FreeBSD (pkg / ports)
 - Continuando mantendo / respeitando a Filosofia do Projeto em pé
+
+## 10. Arrumar o Vault
+
+- Ele está 100% funcional em tudo, mas nn funciona quando eu rodo um script, pelo menos nos 
+- orbs-server
+- frigo-server

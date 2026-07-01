@@ -90,8 +90,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 sudo git clone "https://git.FreeBSD.org/ports.git" "/usr/ports"
 sudo git -C "/usr/ports" pull
 
-sudo git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-sudo git fetch
+sudo git -C "/usr/ports" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+sudo git -C "/usr/ports" fetch
 
 ### ################################
 ### Setup Jails
