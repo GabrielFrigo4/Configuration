@@ -23,6 +23,10 @@ git -C "${HOME}/.config/nvim" pull
 ### ################################
 
 git clone "https://github.com/GabrielFrigo4/vimfiles.git" "${HOME}/vimfiles"
+cat << 'EOF' | tee "${HOME}/.vimrc" > "/dev/null"
+set rtp+=~/vimfiles
+source ~/vimfiles/vimrc
+EOF
 git -C "${HOME}/vimfiles" pull
 
 ### ################################
