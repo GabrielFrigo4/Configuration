@@ -87,14 +87,14 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ### Setup Ports
 ### ################################
 
-sudo git clone "https://git.FreeBSD.org/ports.git" "/usr/ports"
+sudo git clone --branch main --single-branch --depth 1 https://git.FreeBSD.org/ports.git /usr/ports
 sudo git -C "/usr/ports" pull
 
 CURRENT_PORT="$(date +%Y)Q$(date +%m | awk '{print int(($1-1)/3)+1}')"
 sudo git -C "/usr/ports" config --unset-all remote.origin.fetch
 sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/main:refs/remotes/origin/main"
 sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/${CURRENT_PORT}:refs/remotes/origin/${CURRENT_PORT}"
-sudo git -C "/usr/ports" fetch
+sudo git -C "/usr/ports" fetch --depth 1
 
 ### ################################
 ### Setup Jails
