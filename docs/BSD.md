@@ -40,7 +40,7 @@ Os perfis do Konsole no FreeBSD **não são** cópias diretas dos perfis Linux p
 - **Caminhos dos Shells:** No FreeBSD, bash e zsh estão em `/usr/local/bin/`, não em `/bin/`. Portanto, os profiles usam `Command=/usr/local/bin/bash` e `Command=/usr/local/bin/zsh`.
 - **Shell.profile (Exclusivo do FreeBSD):** Um perfil adicional que configura `Environment=SHELL_INIT=1,SHELL_TARGET=/bin/sh` e `Command=/bin/sh`, utilizado pelo ecossistema Shell para inicialização controlada.
 
-Os profiles do FreeBSD são gerenciados pelo script `bootstrap/freebsd/desktop/gui.sh` e não pelo diretório `software/terminals/konsole/`.
+Os profiles do FreeBSD são armazenados em `software/terminals/konsole/freebsd/` (com os caminhos corretos para `/usr/local/bin/`) e são copiados para `~/.local/share/konsole/` pelo script `bootstrap/freebsd/desktop/gui.sh`.
 
 ### 5. Display Manager (LY)
 

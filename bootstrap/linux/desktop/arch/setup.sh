@@ -106,28 +106,13 @@ sudo pacman --needed --noconfirm -S bluez-utils
 sudo pacman --needed --noconfirm -S iwd
 
 ### ################################
-### Installing Build System Tools
-### ################################
-
-sudo pacman --needed --noconfirm -S make
-sudo pacman --needed --noconfirm -S cmake
-sudo pacman --needed --noconfirm -S ninja
-sudo pacman --needed --noconfirm -S meson
-
-### ################################
-### Installing Build Docs Tools
-### ################################
-
-sudo pacman --needed --noconfirm -S doxygen
-
-### ################################
 ### Installing Bootable Tools
 ### ################################
 
 sudo pacman --needed --noconfirm -S ventoy
 
 ### ################################
-### Setup Workspace (User)
+### Setup Workspace
 ### ################################
 
 mkdir -p "${HOME}/Workspace"
@@ -185,7 +170,6 @@ sudo pacman --needed --noconfirm -S dkms
 # https://docs.platformio.org/en/latest/core/installation/udev-rules.html
 curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules | sudo tee /etc/udev/rules.d/99-platformio-udev.rules > "/dev/null"
 
-# Dual Shock 4
 cat << 'EOF' | sudo tee "/etc/udev/rules.d/99-ds4.rules" > "/dev/null"
 SUBSYSTEM=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="05c4", MODE="0666"
 SUBSYSTEM=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="09cc", MODE="0666"
@@ -198,7 +182,7 @@ EOF
 ### Installing Pacman Contrib
 ### ################################
 
-sudo pacman --needed --noconfirm -S  pacman-contrib
+sudo pacman --needed --noconfirm -S pacman-contrib
 
 ### ################################
 ### Installing Yay
@@ -286,7 +270,7 @@ source "~/.oh-my-posh.nu";
 EOF
 
 ### ################################
-### Installing PowherShell
+### Installing PowerShell
 ### ################################
 
 yay --needed --noconfirm -S powershell-bin
@@ -337,8 +321,6 @@ yay --needed --noconfirm -S ttf-carlito
 ### ################################
 
 . "${SCRIPT_DIR}/../../../common/fonts.sh"
-
-### ################################################################################################################################
 
 ### ################################################################################################################################
 
@@ -457,253 +439,26 @@ yay --needed --noconfirm -S wine
 ### ################################################################################################################################
 
 ### ################################
-### Installing System Libraries
+### Installing Rust CLI Tools
 ### ################################
 
-# Installing Sys-Lib
-yay --needed --noconfirm -S libxml++
-yay --needed --noconfirm -S libvterm
-yay --needed --noconfirm -S ctags
-yay --needed --noconfirm -S gtk3 gtk4
-yay --needed --noconfirm -S notcurses
-yay --needed --noconfirm -S ncurses
-yay --needed --noconfirm -S jansson
-# Installing Dev-Lib
-yay --needed --noconfirm -S bluez-libs
-yay --needed --noconfirm -S minizip-ng
-yay --needed --noconfirm -S minizip
-yay --needed --noconfirm -S zlib-ng
-yay --needed --noconfirm -S zlib
-# Installing Ssl-Lib
-yay --needed --noconfirm -S libressl
-yay --needed --noconfirm -S openssl
-yay --needed --noconfirm -S libsodium
-yay --needed --noconfirm -S gnupg
-
-# Installing Dev-Lib (64 bits)
-yay --needed --noconfirm -S gcc-libs
-yay --needed --noconfirm -S xcb-util
-yay --needed --noconfirm -S alsa-lib
-yay --needed --noconfirm -S cairo
-# Installing Dev-Lib (32 bits)
-yay --needed --noconfirm -S lib32-gcc-libs
-yay --needed --noconfirm -S lib32-xcb-util
-yay --needed --noconfirm -S lib32-alsa-lib
-yay --needed --noconfirm -S lib32-cairo
-
-### ################################
-### Installing Editor Libraries
-### ################################
-
-# Tree-Sitter
-yay --needed --noconfirm -S tree-sitter
-yay --needed --noconfirm -S tree-sitter-cli
-yay --needed --noconfirm -S tree-sitter-grammar
-
-### ################################
-### Installing C Libraries
-### ################################
-
-# Data Structures
-yay --needed --noconfirm -S klib
-yay --needed --noconfirm -S glibc
-# Data Serialization
-yay --needed --noconfirm -S libfyaml
-# LibArchive
-yay --needed --noconfirm -S libarchive
-# LibSndFile
-yay --needed --noconfirm -S libsndfile
-# USB
-yay --needed --noconfirm -S libserialport
-yay --needed --noconfirm -S libusb
-yay --needed --noconfirm -S hidapi
-# ZMQ
-yay --needed --noconfirm -S zeromq
-yay --needed --noconfirm -S cppzmq
-# GLFW
-yay --needed --noconfirm -S glfw
-# SDL3
-yay --needed --noconfirm -S sdl3
-yay --needed --noconfirm -S sdl3_image
-yay --needed --noconfirm -S sdl3_sound
-yay --needed --noconfirm -S sdl3_mixer
-yay --needed --noconfirm -S sdl3_ttf
-yay --needed --noconfirm -S sdl3_shadercross
-# SFML
-yay --needed --noconfirm -S sfml
-yay --needed --noconfirm -S csfml
-# OpenGL
-yay --needed --noconfirm -S glm
-yay --needed --noconfirm -S cglm
-yay --needed --noconfirm -S glew
-yay --needed --noconfirm -S opengl-man-pages
-# OpenAL
-yay --needed --noconfirm -S openal
-# OpenCL
-yay --needed --noconfirm -S opencl-icd-loader
-yay --needed --noconfirm -S libclc
-# FreeType
-yay --needed --noconfirm -S freetype2
-# Plot
-yay --needed --noconfirm -S cairo
-# Graph
-yay --needed --noconfirm -S igraph
-
-### ################################
-### Installing Haskell Libraries
-### ################################
-
-# Install Glasgow Haskell
-yay --needed --noconfirm -S ghc-static
-yay --needed --noconfirm -S ghc-libs
-
-### ################################
-### Installing Python Libraries
-### ################################
-
-# Tool
-yay --needed --noconfirm -S python-pytooling
-yay --needed --noconfirm -S python-pyautogui
-yay --needed --noconfirm -S python-pillow
-# Hack
-yay --needed --noconfirm -S python-pwntools
-# LLM
-yay --needed --noconfirm -S python-google-genai
-# Document
-yay --needed --noconfirm -S python-weasyprint
-# Math
-yay --needed --noconfirm -S python-matplotlib
-yay --needed --noconfirm -S python-cairo
-yay --needed --noconfirm -S python-pulp
-# Graph
-yay --needed --noconfirm -S python-networkx
-yay --needed --noconfirm -S python-igraph
-# Net
-yay --needed --noconfirm -S python-websockets
-yay --needed --noconfirm -S python-pystun3
-yay --needed --noconfirm -S python-flask
-
-### ################################
-### Installing Frameworks
-### ################################
-
-# Install Love2D
-yay --needed --noconfirm -S love
-
-### ################################################################################################################################
-
-### ################################
-### Installing Languages
-### ################################
-
-# Assembly
-yay --needed --noconfirm -S nasm
-yay --needed --noconfirm -S fasm
-yay --needed --noconfirm -S fasmg
-yay --needed --noconfirm -S fasm2
-yay --needed --noconfirm -S fasmarm
-# C/C++
-yay --needed --noconfirm -S gcc
-yay --needed --noconfirm -S clang llvm lld lldb
-yay --needed --noconfirm -S musl
-yay --needed --noconfirm -S bear
-sudo ln -f "/usr/bin/gcc" "/usr/bin/cc"
-sudo ln -f "/usr/bin/g++" "/usr/bin/CC"
-sudo ln -f "/usr/bin/g++" "/usr/bin/c++"
-# GPU
-yay --needed --noconfirm -S adaptivecpp
-# Zig
-yay --needed --noconfirm -S zig
-# Rust
-yay --needed --noconfirm -S rustup
-rustup update
-rustup default stable
-rustup toolchain install stable
-# Go
-yay --needed --noconfirm -S go # or 'gcc-go'
-# Haskell
-yay --needed --noconfirm -S cabal-install
-yay --needed --noconfirm -S stack
-yay --needed --noconfirm -S ghc
-# C#
-yay --needed --noconfirm -S dotnet-sdk
-# Java
-yay --needed --noconfirm -S jdk-openjdk
-# JavaScript
-yay --needed --noconfirm -S bun
-yay --needed --noconfirm -S deno
-yay --needed --noconfirm -S nodejs
-yay --needed --noconfirm -S npm
-# Python
-yay --needed --noconfirm -S python
-yay --needed --noconfirm -S pypy3
-yay --needed --noconfirm -S pypy
-yay --needed --noconfirm -S mypy
-cargo install --git https://github.com/RustPython/RustPython rustpython
-# Lua
-yay --needed --noconfirm -S lua
-yay --needed --noconfirm -S luajit
-yay --needed --noconfirm -S nelua-git
-# Lisp
-yay --needed --noconfirm -S sbcl
-
-### ################################
-### Installing GCC Frontends
-### ################################
-
-# Fortran
-yay --needed --noconfirm -S gcc-fortran
-# Rust
-yay --needed --noconfirm -S gcc-rust
-# Ada
-yay --needed --noconfirm -S gcc-ada
-# Go
-yay --needed --noconfirm -S gcc-go # or 'go'
-# D
-yay --needed --noconfirm -S gcc-d
-
-### ################################################################################################################################
-
-### ################################
-### Installing LSP Servers
-### ################################
-
-# Formatter LSP
-go install golang.org/x/tools/gopls@latest
-yay --needed --noconfirm -S prettier
-yay --needed --noconfirm -S stylua
-
-# Assembly LSP
-yay --needed --noconfirm -S asm-lsp
-
-### ################################################################################################################################
-
-### ################################
-### Installing Shell Tools
-### ################################
-
-# GNU Tools
-yay --needed --noconfirm -S gdb
-# Files Tools
-yay --needed --noconfirm -S dos2unix
-# Executables Tools
-yay --needed --noconfirm -S checksec
-yay --needed --noconfirm -S valgrind
-# Hacking Tools
-yay --needed --noconfirm -S ropgadget
-# Rust Tools
 yay --needed --noconfirm -S fd
 yay --needed --noconfirm -S bat
 yay --needed --noconfirm -S eza
 yay --needed --noconfirm -S grex
 yay --needed --noconfirm -S ripgrep
 yay --needed --noconfirm -S repgrep
-# Cargo Tools
-cargo install cargo-update
-cargo install-update -a
-# Embedded Tools
+
+### ################################
+### Installing Embedded Tools
+### ################################
+
 yay --needed --noconfirm -S platformio-core
-# PDF
+
+### ################################
+### Installing PDF Tools
+### ################################
+
 yay --needed --noconfirm -S pdftk
 yay --needed --noconfirm -S img2pdf
 yay --needed --noconfirm -S jbig2enc
@@ -714,7 +469,11 @@ yay --needed --noconfirm -S enchant
 yay --needed --noconfirm -S graphviz
 yay --needed --noconfirm -S jpegoptim
 yay --needed --noconfirm -S pdfsizeopt-git
-# TeX / LaTeX
+
+### ################################
+### Installing TeX / LaTeX
+### ################################
+
 yay --needed --noconfirm -S texlive
 yay --needed --noconfirm -S texlive-core
 yay --needed --noconfirm -S texlive-latexextra
@@ -722,13 +481,28 @@ yay --needed --noconfirm -S texlive-langportuguese
 yay --needed --noconfirm -S texlive-fontsextra
 yay --needed --noconfirm -S texlive-pictures
 yay --needed --noconfirm -S texlive-pstricks
-# Pandoc
+
+### ################################
+### Installing Pandoc Tools
+### ################################
+
 yay --needed --noconfirm -S pandoc-plot
 yay --needed --noconfirm -S pandoc-cli
-# Convert
+
+### ################################
+### Installing Media Tools
+### ################################
+
 yay --needed --noconfirm -S imagemagick
 yay --needed --noconfirm -S ffmpeg
-# OCR
+yay --needed --noconfirm -S yt-dlp
+yay --needed --noconfirm -S ytui
+yay --needed --noconfirm -S ani-cli
+
+### ################################
+### Installing OCR Tools
+### ################################
+
 yay --needed --noconfirm -S ocrs
 yay --needed --noconfirm -S gocr
 yay --needed --noconfirm -S ocrad
@@ -736,64 +510,29 @@ yay --needed --noconfirm -S tesseract
 yay --needed --noconfirm -S tesseract-data-eng
 yay --needed --noconfirm -S tesseract-data-por
 yay --needed --noconfirm -S ocrmypdf
-# Hardware
+
+### ################################
+### Installing Hardware Tools
+### ################################
+
 yay --needed --noconfirm -S esptool
-# Media
-yay --needed --noconfirm -S yt-dlp
-yay --needed --noconfirm -S ytui
-yay --needed --noconfirm -S ani-cli
-# Fetch
-yay --needed --noconfirm -S fastfetch
-# Security
+
+### ################################
+### Installing Security Tools
+### ################################
+
 yay --needed --noconfirm -S dirb
 
-### ################################################################################################################################
-
 ### ################################
-### Installing JavaScript Packages
+### Installing System Fetch
 ### ################################
 
-# Software
-yay --needed --noconfirm -S nodejs-localtunnel
-
-### ################################################################################################################################
-
-### ################################
-### Installing Python Packages
-### ################################
-
-# Package Manager
-yay --needed --noconfirm -S python-venv
-yay --needed --noconfirm -S python-pip
-yay --needed --noconfirm -S python-pipx
-yay --needed --noconfirm -S uv
-
-# Cython
-yay --needed --noconfirm -S cython
+yay --needed --noconfirm -S fastfetch
 
 ### ################################################################################################################################
 
 ### ################################
-### Installing Lua Packages
-### ################################
-
-# Package Manager
-yay --needed --noconfirm -S luarocks
-
-# https://luarocks.org/
-sudo luarocks install lua-cjson
-sudo luarocks install luafilesystem
-sudo luarocks install luasocket
-sudo luarocks install cffi-lua
-sudo luarocks install lpeg
-
-# New STD Libraries
-sudo luarocks install penlight
-
-### ################################################################################################################################
-
-### ################################
-### Installing Terminal Editor
+### Installing Terminal Editors
 ### ################################
 
 yay --needed --noconfirm -S emacs
@@ -804,19 +543,9 @@ yay --needed --noconfirm -S micro
 yay --needed --noconfirm -S mg
 
 ### ################################
-### Installing Git Config
+### Setup Helix Wrapper
 ### ################################
 
-# Emacs
-mkdir -p "${HOME}/.emacs.d"
-git clone "https://github.com/GabrielFrigo4/.emacs.d.git" "${HOME}/.emacs.d"
-# NeoVim
-mkdir -p "${HOME}/.config/nvim"
-git clone "https://github.com/GabrielFrigo4/nvim.git" "${HOME}/.config/nvim"
-# Vim
-git clone "https://github.com/GabrielFrigo4/vimfiles.git" "${HOME}/vimfiles"
-# Helix
-git clone "https://github.com/GabrielFrigo4/helix.git" "${HOME}/.config/helix"
 cat << 'EOF' | sudo tee "/usr/bin/hx" > "/dev/null"
 #!/usr/bin/sh
 helix "$@"
@@ -825,33 +554,10 @@ EOF
 sudo chmod +x "/usr/bin/hx"
 
 ### ################################
-### Updating Git Config
+### Setup Editor Configs
 ### ################################
 
-cd "${HOME}/.emacs.d"
-git pull
-cd "${HOME}/.config/nvim"
-git pull
-cd "${HOME}/vimfiles"
-git pull
-cd "${HOME}/.config/helix"
-git pull
-cd "${HOME}"
-
-### ################################
-### Installing Theme in Micro
-### ################################
-
-### https://draculatheme.com/micro
-git clone "https://github.com/dracula/micro.git"
-mkdir -p "${HOME}/.config/micro/colorschemes"
-cp "micro/dracula.micro" "${HOME}/.config/micro/colorschemes/dracula.micro"
-sudo rm -f -r micro
-cat << 'EOF' | tee "${HOME}/.config/micro/settings.json" > "/dev/null"
-{
-	"colorscheme": "dracula"
-}
-EOF
+. "${SCRIPT_DIR}/../../../common/editors.sh"
 
 ### ################################################################################################################################
 
@@ -859,60 +565,103 @@ EOF
 ### Installing General Software
 ### ################################
 
-# Office
 yay --needed --noconfirm -S libreoffice-still
 yay --needed --noconfirm -S onlyoffice-desktopeditors
-# Web Browser
+
+### ################################
+### Installing Web Browsers
+### ################################
+
 yay --needed --noconfirm -S microsoft-edge-stable
 yay --needed --noconfirm -S google-chrome
-# Communication
+
+### ################################
+### Installing Communication Tools
+### ################################
+
 yay --needed --noconfirm -S discord
 yay --needed --noconfirm -S zoom
-# Conversor
+
+### ################################
+### Installing Media Software
+### ################################
+
 yay --needed --noconfirm -S handbrake
-# Computation
+yay --needed --noconfirm -S obs-studio
+yay --needed --noconfirm -S feh
 yay --needed --noconfirm -S scilab
-# Drawing
+
+### ################################
+### Installing Drawing Software
+### ################################
+
 yay --needed --noconfirm -S gimp
 yay --needed --noconfirm -S krita
 yay --needed --noconfirm -S inkscape
 yay --needed --noconfirm -S libresprite
 yay --needed --noconfirm -S blender
-# Screen Recorder
-yay --needed --noconfirm -S obs-studio
-# Viewer
-yay --needed --noconfirm -S feh
-# CAD
+
+### ################################
+### Installing CAD Software
+### ################################
+
 yay --needed --noconfirm -S freecad
-# Buds Client
+
+### ################################
+### Installing Audio/Peripheral Tools
+### ################################
+
 yay --needed --noconfirm -S galaxybudsclient-bin
-# Flash
 yay --needed --noconfirm -S etcher-bin
-# LaTeX / TeX
+
+### ################################
+### Installing TeX Software
+### ################################
+
 yay --needed --noconfirm -S texworks
-# VMWare
+
+### ################################
+### Installing VMWare
+### ################################
+
 yay --needed --noconfirm -S vmware-keymaps
 yay --needed --noconfirm -S vmware-workstation
-# QEMU
+
+### ################################
+### Installing QEMU
+### ################################
+
 yay --needed --noconfirm -S qemu-full
-# RDP
+
+### ################################
+### Installing Remote Desktop
+### ################################
+
 yay --needed --noconfirm -S remmina
 yay --needed --noconfirm -S freerdp
 
+### ################################################################################################################################
+
 ### ################################
-### Installing Development Software
+### Installing Reverse Engineering
 ### ################################
 
-# https://github.com/horsicq
 yay --needed --noconfirm -S xelfviewer-bin
 yay --needed --noconfirm -S xpeviewer-bin
 yay --needed --noconfirm -S xmachoviewer-bin
 yay --needed --noconfirm -S xapkdetector-bin
-# Reverse Engineering
 yay --needed --noconfirm -S ghidra
-# Debugger
+
+### ################################
+### Installing Debuggers
+### ################################
+
 yay --needed --noconfirm -S gf2-git
-# Network
+
+### ################################
+### Installing Network Analysis Tools
+### ################################
+
 yay --needed --noconfirm -S wireshark-cli
 yay --needed --noconfirm -S wireshark-qt
 sudo usermod -aG wireshark "$(id -un)"
@@ -922,157 +671,115 @@ cat << 'EOF' | sudo tee "/usr/local/bin/wireshark" > "/dev/null"
 QT_QPA_PLATFORMTHEME="" /usr/bin/wireshark "$@"
 EOF
 sudo chmod +x "/usr/local/bin/wireshark"
-# Database
+
+### ################################
+### Installing Database Tools
+### ################################
+
 yay --needed --noconfirm -S dbeaver
-# Game Engine
+
+### ################################
+### Installing Game Engines
+### ################################
+
 yay --needed --noconfirm -S unityhub
 yay --needed --noconfirm -S godot
-# Arduino
+
+### ################################
+### Installing Electronics Tools
+### ################################
+
 yay --needed --noconfirm -S arduino-ide-bin
 yay --needed --noconfirm -S arduino-cli
-# Google
-yay --needed --noconfirm -S gdown
-# Hardware (CPU)
 yay --needed --noconfirm -S digital
 yay --needed --noconfirm -S openfpgaloader
 yay --needed --noconfirm -S quartus-free
 yay --needed --noconfirm -S gtkwave
 yay --needed --noconfirm -S ghdl
 
+### ################################
+### Installing Google Tools
+### ################################
+
+yay --needed --noconfirm -S gdown
+
 ### ################################################################################################################################
 
 ### ################################
-### Installing Development Software
+### Installing Git GUI Tools
 ### ################################
 
-# GitHub
 yay --needed --noconfirm -S github-desktop-bin
-
-# GitKraken
 yay --needed --noconfirm -S gitkraken-cli-bin
 yay --needed --noconfirm -S gitkraken
 
-# Git Credential
+### ################################
+### Installing Git Credential Manager
+### ################################
+
 yay --needed --noconfirm -S git-credential-manager-bin
 git-credential-manager configure
 
-# Firebase
+### ################################
+### Installing Firebase
+### ################################
+
 curl -sL "https://firebase.tools" | sudo upgrade=true bash
 yay --needed --noconfirm -S firebase-tools-bin
+
+### ################################################################################################################################
 
 ### ################################
 ### Installing KVM/QEMU
 ### ################################
 
-# Hypervisor
 yay --needed --noconfirm -S qemu-desktop
-
-# Daemon
 yay --needed --noconfirm -S libvirt
-
-# Rede Virtual
 yay --needed --noconfirm -S dnsmasq
-yay --needed --noconfirm -S iptables-nft 
-
-# Firmware
+yay --needed --noconfirm -S iptables-nft
 yay --needed --noconfirm -S edk2-ovmf
-
-# Interface Gráfica
 yay --needed --noconfirm -S virt-manager
 yay --needed --noconfirm -S virt-viewer
 
-# Configuração e Ativação
 sudo systemctl enable --now libvirtd
 sudo usermod -aG libvirt "$(id -un)"
 sudo virsh --connect qemu:///system net-autostart default
 sudo virsh --connect qemu:///system net-start default
 
-### ################################
-### Mermaid CLI
-### ################################
-
-yay --needed --noconfirm -S mermaid-cli
-
-### ################################
-### Installing Postgres
-### ################################
-
-yay --needed --noconfirm -S postgresql
-
-sudo -u postgres -i
-initdb --locale $LANG -E UTF8 -D '/var/lib/postgres/data/'
-exit
-
-sudo systemctl enable --now postgresql
-sudo systemctl status postgresql
-
-psql -U postgres
-\password
-
-### ################################
-### Installing pgAdmin4
-### ################################
-
-flatpak install -y flathub org.pgadmin.pgadmin4
-flatall org.pgadmin.pgadmin4
-
-sudo mkdir -p "/var/lib/pgadmin"
-sudo mkdir -p "/var/log/pgadmin"
-sudo chown "$(id -un)" "/var/lib/pgadmin"
-sudo chown "$(id -un)" "/var/log/pgadmin"
-
-cd ~
-python -m venv pgadmin4
-source ~/pgadmin4/bin/activate
-cd pgadmin4
-pip install pgadmin4
-cd ~
-
-cat << 'EOF' | tee "${HOME}/.local/bin/pgadmin4" > "/dev/null"
-#!/usr/bin/sh
-source ~/pgadmin4/bin/activate
-pgadmin4 "$@"
-EOF
-chmod +x "${HOME}/.local/bin/pgadmin4"
+### ################################################################################################################################
 
 ### ################################
 ### Installing Code Editors
 ### ################################
 
-# https://www.geany.org/
 yay --needed --noconfirm -S geany
 mkdir -p "${HOME}/.config/geany/colorschemes"
 cd "${HOME}/.config/geany/colorschemes"
 wget "https://raw.githubusercontent.com/geany/geany-themes/master/colorschemes/one-dark.conf"
 cd ~
 
-# https://zed.dev/
 curl -f https://zed.dev/install.sh | sh
 yay --needed --noconfirm -S zed
 
-# Proprietary Licensed
-yay --needed --noconfirm -S visual-studio-code-bin # or 'code'
-# MIT-Licensed => Source
+yay --needed --noconfirm -S visual-studio-code-bin
 yay --needed --noconfirm -S vscodium-bin
-# MIT-Licensed => Binary
-yay --needed --noconfirm -S code # or 'visual-studio-code-bin'
+yay --needed --noconfirm -S code
 
-# Google Antigravity OSS
 yay --needed --noconfirm -S antigravity
 yay --needed --noconfirm -S antigravity-ide
 
-# Alias Antigravity IDE
 cat << 'EOF' | sudo tee "/usr/bin/ant" > "/dev/null"
 #!/usr/bin/sh
 antigravity-ide "$@"
 EOF
 sudo chmod +x "/usr/bin/ant"
 
+### ################################################################################################################################
+
 ### ################################
 ### Installing Games
 ### ################################
 
-# Steam
 yay --needed --noconfirm -S steam
 
 ### ################################################################################################################################

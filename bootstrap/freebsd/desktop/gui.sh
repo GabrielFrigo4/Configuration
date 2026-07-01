@@ -45,79 +45,11 @@ EOF
 
 mkdir -p "${HOME}/.local/share/konsole"
 
-### ################################
-### Konsole Shell Profile
-### ################################
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+KONSOLE_DIR="${SCRIPT_DIR}/../../software/terminals/konsole/freebsd"
 
-cat << 'EOF' | tee "${HOME}/.local/share/konsole/Shell.profile" > "/dev/null"
-[Appearance]
-AntiAliasFonts=true
-ColorScheme=Breeze
-Font=JetBrainsMono Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-FontFeatures=liga,calt
-UseFontBrailleChararacters=true
-UseFontLineChararacters=true
-WordMode=false
-WordModeAttr=true
-
-[General]
-Command=/bin/sh
-Environment=SHELL_INIT=1,SHELL_TARGET=/bin/sh
-Name=Shell
-Parent=FALLBACK/
-
-[Terminal Features]
-BlinkingCursorEnabled=true
-EOF
-
-### ################################
-### Konsole Bash Profile
-### ################################
-
-cat << 'EOF' | tee "${HOME}/.local/share/konsole/Bash.profile" > "/dev/null"
-[Appearance]
-AntiAliasFonts=true
-ColorScheme=Breeze
-Font=JetBrainsMono Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-FontFeatures=liga,calt
-UseFontBrailleChararacters=true
-UseFontLineChararacters=true
-WordMode=false
-WordModeAttr=true
-
-[General]
-Command=/usr/local/bin/bash
-Environment=SHELL=/usr/local/bin/bash
-Name=Bash
-Parent=FALLBACK/
-
-[Terminal Features]
-BlinkingCursorEnabled=true
-EOF
-
-### ################################
-### Konsole Zsh Profile
-### ################################
-
-cat << 'EOF' | tee "${HOME}/.local/share/konsole/Zsh.profile" > "/dev/null"
-[Appearance]
-AntiAliasFonts=true
-ColorScheme=Breeze
-Font=JetBrainsMono Nerd Font,12,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
-FontFeatures=liga,calt
-UseFontBrailleChararacters=true
-UseFontLineChararacters=true
-WordMode=false
-WordModeAttr=true
-
-[General]
-Command=/usr/local/bin/zsh
-Environment=SHELL=/usr/local/bin/zsh
-Name=Zsh
-Parent=FALLBACK/
-
-[Terminal Features]
-BlinkingCursorEnabled=true
-EOF
+cp "${KONSOLE_DIR}/Shell.profile" "${HOME}/.local/share/konsole/Shell.profile"
+cp "${KONSOLE_DIR}/Bash.profile" "${HOME}/.local/share/konsole/Bash.profile"
+cp "${KONSOLE_DIR}/Zsh.profile" "${HOME}/.local/share/konsole/Zsh.profile"
 
 ### ################################################################################################################################

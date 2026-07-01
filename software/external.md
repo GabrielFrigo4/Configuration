@@ -13,6 +13,7 @@ Ferramentas que exigem o download direto do binário/instalador pelo navegador:
 - **[CUDA-Z](https://cuda-z.sourceforge.net/)**: Utilitário leve de diagnóstico para placas de vídeo NVIDIA e CUDA.
 - **[GLView](https://www.realtech-vr.com/home/)**: Ferramenta de diagnóstico e teste para extensões e capacidades OpenGL/Vulkan.
 - **[Win32DiskImager](https://sourceforge.net/projects/win32diskimager/)**: Gravador de imagens RAW/IMG em pendrives (essencial para criar mídias de instalação de ISOs do Linux/BSD).
+- **[Macrorit Partition Expert](https://macrorit.com/partition-magic-manager/partition-expert-download.html)**: Gerenciador de partições avançado. Não disponível no Winget; usar a versão portátil oficial baixada do site.
 
 ## 🛍️ Microsoft Store (Windows)
 

@@ -11,6 +11,7 @@ Perfis e configurações de terminais e shells.
 | **CMD** (Clink)      | Windows     | `profile.cmd`, `profile.lua`, `setup-profile.reg`                      |
 | **PowerShell**       | Windows     | `profile.ps1`, `Microsoft.PowerShell_profile.ps1`                      |
 | **Konsole**          | Linux (KDE) | `Bash.profile`, `Zsh.profile`, `Nushell.profile`, `PowerShell.profile` |
+| **Konsole (FreeBSD)**| FreeBSD     | `freebsd/Shell.profile`, `freebsd/Bash.profile`, `freebsd/Zsh.profile` |
 
 ## Instalação
 
@@ -60,3 +61,13 @@ $HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
 ```
 
 Todos os perfis usam **JetBrainsMono Nerd Font** tamanho 12, tema **Breath** e cursor piscante.
+
+### Konsole (FreeBSD)
+
+```
+~/.local/share/konsole/Shell.profile
+~/.local/share/konsole/Bash.profile
+~/.local/share/konsole/Zsh.profile
+```
+
+Os profiles do FreeBSD diferem dos do Linux: usam o tema **Breeze** e os caminhos dos shells são `/usr/local/bin/bash` e `/usr/local/bin/zsh` (instalados via `pkg`). O `Shell.profile` é exclusivo do FreeBSD para inicialização controlada pelo ecossistema Shell.

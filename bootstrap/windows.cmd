@@ -6,7 +6,6 @@ rem ################################
 rem Enable Auto Confirmation
 rem ################################
 
-rem enable
 winget settings --enable InstallerHashOverride
 
 rem ################################
@@ -174,13 +173,10 @@ rem ################################
 rem Installing Scoop
 rem ################################
 
-rem system
 pwsh -Command "Invoke-RestMethod get.scoop.sh | Invoke-Expression"
 scoop bucket add nonportable
 scoop bucket add extras
 scoop bucket add main
-
-rem user
 scoop bucket add nerd-fonts
 scoop bucket add java
 
@@ -233,14 +229,12 @@ rem ################################
 rem Installing Choco
 rem ################################
 
-rem install
 powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
 
 rem ################################
 rem Enable Auto Confirmation
 rem ################################
 
-rem enable
 choco feature enable -n=allowGlobalConfirmation
 
 rem ################################
@@ -252,13 +246,11 @@ choco install pestudio
 choco install cheatengine
 rem memory
 choco install dmde
-choco install partitionexpert
 
 rem ################################
 rem Disable Auto Confirmation
 rem ################################
 
-rem disable
 choco feature disable -n=allowGlobalConfirmation
 
 rem ################################################################################################################################
@@ -267,7 +259,6 @@ rem ################################
 rem PowerShell
 rem ################################
 
-rem unblock file
 pwsh -Command "Unblock-File -Path '%PROGRAMFILES%\PowerShell\7\profile.ps1'"
 pwsh -Command "Unblock-File -Path '%ONEDRIVE%\Documentos\PowerShell\Microsoft.PowerShell_profile.ps1'"
 pwsh -Command "Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned"
@@ -278,7 +269,6 @@ rem ################################
 rem Setup Git
 rem ################################
 
-rem git config
 del "%USERPROFILE%\.gitconfig"
 git config --global credential.helper "!gh auth git-credential"
 git config --global user.email "${GIT_EMAIL}"
@@ -287,7 +277,6 @@ git config --global init.defaultBranch "main"
 git config --global pull.rebase false
 git config --global color.ui auto
 
-rem github config
 gh auth login
 gh auth setup-git
 
@@ -295,7 +284,6 @@ rem ################################
 rem Clone Git Repository
 rem ################################
 
-rem clone
 git clone "https://github.com/GabrielFrigo4/.emacs.d" "%USERPROFILE%\.emacs.d"
 git clone "https://github.com/GabrielFrigo4/nvim" "%LOCALAPPDATA%\nvim"
 git clone "https://github.com/GabrielFrigo4/vimfiles" "%USERPROFILE%\vimfiles"
@@ -306,7 +294,6 @@ rem ################################
 rem Pull Git Config
 rem ################################
 
-rem update
 cd "%USERPROFILE%\.emacs.d"
 git pull
 cd "%LOCALAPPDATA%\nvim"
@@ -328,7 +315,6 @@ rem ################################
 rem https://github.com/clangd/clangd
 mkdir "%LOCALAPPDATA%\clangd" 2>nul
 
-rem clangd settings
 call :ClangdBOF > "%LOCALAPPDATA%\clangd\config.yaml"
 goto :ClangdEOF
 :ClangdBOF
@@ -451,11 +437,8 @@ rem ################################
 rem Install JavaScript Modules
 rem ################################
 
-rem formatter
 npm install --global prettier@latest
-rem database
 npm install --global firebase-tools@latest
-rem internet
 npm install --global localtunnel@latest
 
 rem ################################################################################################################################
@@ -464,7 +447,6 @@ rem ################################
 rem Update Python PIP
 rem ################################
 
-rem install
 python.exe -m pip install --upgrade pip
 
 rem ################################
@@ -500,10 +482,8 @@ rem ################################
 rem Setup Python Modules
 rem ################################
 
-rem python scripts
 mkdir "%LOCALAPPDATA%\Programs\Python\Python314\Scripts" 2>nul
 
-rem ropgadget
 call :ROPgadgetBOF > "%LOCALAPPDATA%\Programs\Python\Python314\Scripts\ROPgadget.cmd"
 goto :ROPgadgetEOF
 :ROPgadgetBOF
@@ -518,7 +498,6 @@ rem ################################
 rem Setup Reverse Proxy
 rem ################################
 
-rem ngrok
 ngrok config add-authtoken 2w0Qgpn9ThPJkEJrTm6Wypk7e05_7EHzDNHjc4aMbjC2MJHYK
 
 rem ################################################################################################################################
@@ -527,7 +506,6 @@ rem ################################
 rem Setup PlatformIO
 rem ################################
 
-rem install platformio
 wget https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
 python get-platformio.py
 del get-platformio.py
@@ -698,7 +676,6 @@ rem ################################
 rem Install x64dbg Modules
 rem ################################
 
-rem update x64dbg plugin manager
 x64plgmnrc -U
 rem https://github.com/horsicq/stringsx64dbg
 x64plgmnrc -i stringsx64dbg
@@ -736,7 +713,6 @@ mkdir "%USERPROFILE%\.config\micro\colorschemes" 2>nul
 copy "micro\dracula.micro" "%USERPROFILE%\.config\micro\colorschemes\dracula.micro"
 rmdir /S micro
 
-rem settings
 call :MicroBOF > "%USERPROFILE%\.config\micro\settings.json"
 goto :MicroEOF
 :MicroBOF

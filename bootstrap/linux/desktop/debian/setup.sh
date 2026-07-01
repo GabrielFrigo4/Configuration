@@ -6,42 +6,52 @@
 ### Setup System
 ### ################################
 
-# Make Gabriel Frigo SUDO
 usermod -aG sudo gabriel
 
-# Add Non-Free to APT
 sudo sed -i 's/main non-free-firmware/main non-free-firmware contrib non-free/' /etc/apt/sources.list
 
-# Update and Upgrade
 sudo apt update
 sudo apt upgrade -y
 
-# Install MAN
 sudo apt install --yes manpages
 sudo apt install --yes man-db
 
-# Install MESA
+### ################################
+### Installing Graphics Drivers
+### ################################
+
 sudo apt install --yes libgl1-mesa-dev
 sudo apt install --yes libglu1-mesa-dev
 sudo apt install --yes mesa-common-dev
 sudo apt install --yes mesa-utils
 
-# Install NVIDIA
+### ################################
+### Installing NVIDIA Drivers
+### ################################
+
 sudo apt install --yes nvidia-driver
 sudo apt install --yes firmware-misc-nonfree
 
-# Install Prerequisites
+### ################################
+### Installing Prerequisites
+### ################################
+
 sudo apt install --yes gnupg
 sudo apt install --yes software-properties-common
 sudo apt install --yes apt-transport-https
 sudo apt install --yes ca-certificates
 
-# Install DOAS
+### ################################
+### Setup DOAS
+### ################################
+
 sudo apt install --yes doas
 cat << 'EOF' | sudo tee "/etc/doas.conf" > "/dev/null"
 permit persist :sudo
 EOF
 sudo chmod 0440 "/etc/doas.conf"
+
+### ################################################################################################################################
 
 ### ################################
 ### Setup Init
@@ -50,10 +60,8 @@ sudo chmod 0440 "/etc/doas.conf"
 cat << 'EOF' | tee "${HOME}/init" > "/dev/null"
 #!/usr/bin/bash
 
-# Emacs Server
 emacs --fg-daemon &
 
-# Run as Services
 disown
 EOF
 chmod +x "${HOME}/init"
@@ -86,56 +94,38 @@ EOF
 ### Setup Workspace
 ### ################################
 
-# Workspace
 mkdir -p "${HOME}/Workspace"
 
-# Firefox NVIDIA
 cat << 'EOF' | tee "${HOME}/.local/bin/firefox-nvc" > "/dev/null"
 #!/usr/bin/bash
 DRI_PRIME=1 /usr/bin/firefox "$@"
 EOF
 chmod +x "${HOME}/.local/bin/firefox-nvc"
 
+### ################################################################################################################################
+
 ### ################################
-### Setup Packages
+### Installing Packages
 ### ################################
 
-# Flatpak and Flathub
 sudo apt install --yes flatpak
 sudo apt install --yes gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub "https://dl.flathub.org/repo/flathub.flatpakrepo"
 alias flatall="flatpak override --user --filesystem=host --share=ipc --share=network --socket=system-bus --socket=session-bus --device=all --talk-name=org.freedesktop.Flatpak"
 
-# GNOME
 sudo apt install --yes gnome-themes-extra
 
-# Build Essential
-sudo apt install --yes build-essential
-
-# Musl Essential
 sudo apt install --yes musl
 sudo apt install --yes musl-dev
 sudo apt install --yes musl-tools
 
-# Utils
 sudo apt install --yes binutils
 sudo apt install --yes coreutils
 
-# Compress
 sudo apt install --yes unzip
 sudo apt install --yes zip
 sudo apt install --yes tar
 
-# Build System 
-sudo apt install --yes make
-sudo apt install --yes cmake
-sudo apt install --yes meson
-sudo apt install --yes ninja-build
-
-# Build Docs 
-sudo apt install --yes doxygen
-
-# Web GET
 sudo apt install --yes wget
 sudo apt install --yes wget2
 sudo apt install --yes curl
@@ -144,18 +134,23 @@ sudo apt install --yes curl
 ### Setup Git
 ### ################################
 
-# Install Git Ecosystem
 sudo apt install --yes git
 sudo apt install --yes git-credential-oauth
 sudo apt install --yes gh
 
-# Install GCM
+### ################################
+### Installing Git Credential Manager
+### ################################
+
 GCM_VER="$(curl -Ls -o "/dev/null" -w %{url_effective} "https://github.com/git-ecosystem/git-credential-manager/releases/latest" | awk -F/ '{print $(NF)}' | sed 's/^v//')"
 wget -O gcm.deb "https://github.com/git-ecosystem/git-credential-manager/releases/download/v${GCM_VER}/gcm-linux-x64-${GCM_VER}.deb"
 sudo apt install --yes "./gcm.deb"
 rm "./gcm.deb"
 
-# Git Config
+### ################################
+### Setup Git Config
+### ################################
+
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 . "${SCRIPT_DIR}/../../../common/git.sh"
 
@@ -163,19 +158,16 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ### Setup LXC
 ### ################################
 
-# Install LXC
 sudo apt install --yes lxc
 sudo apt install --yes lxc-templates
 sudo systemctl enable --now lxc-net
 sudo systemctl enable --now lxc
 
-# Install Incus
 sudo apt install --yes incus
 sudo systemctl enable --now incus.socket
 sudo usermod -aG incus-admin "$(id -un)"
 newgrp incus-admin
 
-# Setup Incus
 cat << 'EOF' | sudo tee -a "/etc/subuid" > "/dev/null"
 root:100000:65536
 EOF
@@ -201,7 +193,7 @@ sudo chsh -s "$(which zsh)" "$(id -un)"
 sudo chsh -s "$(which zsh)" "root"
 
 ### ################################
-### Setup Nushell
+### Installing Nushell
 ### ################################
 
 curl -fsSL "https://apt.fury.io/nushell/gpg.key" | sudo gpg --dearmor -o "/etc/apt/trusted.gpg.d/fury-nushell.gpg"
@@ -269,7 +261,6 @@ sudo apt install --yes fonts-crosextra-carlito
 ### Installing System Tools
 ### ################################
 
-# Clipboard
 sudo apt install --yes universal-ctags
 sudo apt install --yes wl-clipboard
 sudo apt install --yes xclip xsel
@@ -278,10 +269,8 @@ sudo apt install --yes xclip xsel
 ### Installing Container Tools
 ### ################################
 
-# Podman
 sudo apt install --yes podman
 
-# Docker
 sudo apt install --yes docker.io
 sudo systemctl enable --now docker
 sudo usermod -aG docker "$(id -un)"
@@ -290,12 +279,10 @@ sudo usermod -aG docker "$(id -un)"
 ### Installing Web/Net Tools
 ### ################################
 
-# VPN
 sudo apt install --yes network-manager-openvpn-gnome
 sudo apt install --yes network-manager-openvpn
 sudo apt install --yes openvpn
 
-# Search
 touch "${HOME}/.w3m/history"
 sudo apt install --yes elinks w3m lynx
 
@@ -303,198 +290,14 @@ sudo apt install --yes elinks w3m lynx
 ### Installing Wine Tools
 ### ################################
 
-# Wine
 sudo apt install --yes wine
 
 ### ################################################################################################################################
 
 ### ################################
-### Installing Languages
+### Installing Window Editors
 ### ################################
 
-# Assembly
-sudo apt install --yes nasm
-sudo apt install --yes fasm
-# C/C++
-sudo apt install --yes clang clang-tools clangd lldb
-sudo ln -f "/usr/bin/gcc" "/usr/bin/cc"
-sudo ln -f "/usr/bin/g++" "/usr/bin/CC"
-sudo ln -f "/usr/bin/g++" "/usr/bin/c++"
-# Rust
-sudo apt install --yes rust-all
-rustup update
-rustup default stable
-rustup toolchain install stable
-# Go
-sudo apt install --yes golang
-# JavaScript
-curl -fsSL "https://bun.sh/install" | bash
-curl -fsSL "https://deno.land/x/install/install.sh" | bash
-sudo apt install --yes nodejs
-sudo apt install --yes npm
-# Python
-sudo apt install --yes python3
-sudo apt install --yes pypy3
-sudo apt install --yes mypy
-cargo install --git https://github.com/RustPython/RustPython rustpython
-# Lua
-sudo apt install --yes lua5.4
-sudo apt install --yes liblua5.4-dev
-sudo apt install --yes liblua5.4-0
-sudo apt install --yes luajit
-
-### ################################################################################################################################
-
-### ################################
-### Installing System Libraries
-### ################################
-
-# Installing Sys-Lib
-sudo apt install --yes libxml++2.6-dev
-sudo apt install --yes libvterm-dev
-# Installing Dev-Lib
-sudo apt install --yes libtree-sitter-dev
-sudo apt install --yes libminizip-dev
-sudo apt install --yes zlib1g-dev
-# Installing Ssl-Lib
-sudo apt install --yes openssl
-sudo apt install --yes libssl-dev
-sudo apt install --yes libsodium-dev
-# Installing Yaml-Lib
-sudo apt install --yes libfyaml-dev
-sudo apt install --yes libfyaml-utils
-sudo apt install --yes libfyaml0
-
-### ################################
-### Installing C Libraries
-### ################################
-
-# USB
-sudo apt install --yes libusb-dev
-# GLFW
-sudo apt install --yes libglfw3-dev
-sudo apt install --yes libglfw3-doc
-# SDL3
-sudo apt install --yes libsdl3-dev
-sudo apt install --yes libsdl3-doc
-sudo apt install --yes libsdl3-image-dev
-sudo apt install --yes libsdl3-image-doc
-sudo apt install --yes libsdl3-ttf-dev
-sudo apt install --yes libsdl3-ttf-doc
-# SFML
-sudo apt install --yes libsfml-dev
-sudo apt install --yes libsfml-doc
-sudo apt install --yes libcsfml-dev
-sudo apt install --yes libcsfml-doc
-# OpenGL
-sudo apt install --yes libglm-dev
-sudo apt install --yes libglm-doc
-sudo apt install --yes libcglm-dev
-sudo apt install --yes libcglm-doc
-sudo apt install --yes libglew-dev
-sudo apt install --yes opengl-4-man-doc
-# OpenAL
-sudo apt install --yes libopenal-dev
-# OpenCL
-sudo apt install --yes opencl-headers
-sudo apt install --yes ocl-icd-opencl-dev
-sudo apt install --yes libclc-19
-sudo apt install --yes opencl-1.2-man-doc
-# FreeType
-sudo apt install --yes libfreetype-dev
-
-### ################################
-### Installing Frameworks
-### ################################
-
-# Install Love2D
-sudo apt install --yes love
-
-### ################################################################################################################################
-
-### ################################
-### Installing LSP Servers
-### ################################
-
-# Formatter LSP
-go install golang.org/x/tools/gopls@latest
-cargo install stylua
-
-# Assembly LSP
-cargo install asm-lsp
-
-# Clang LSP
-sudo apt install --yes clangd
-
-### ################################################################################################################################
-
-### ################################
-### Installing JavaScript Packages
-### ################################
-
-# Formatter
-sudo npm install --global prettier@latest
-# Mermaid
-sudo npm install --global mermaid-cli@latest
-# Database
-sudo npm install --global firebase-tools@latest
-# Internet
-sudo npm install --global localtunnel@latest
-
-### ################################
-### Installing Python Packages
-### ################################
-
-# Package Manager
-sudo apt install --yes python3-venv
-sudo apt install --yes python3-pip
-sudo apt install --yes pipx
-sudo apt install --yes mypy
-pipx install uv
-
-# Cython
-sudo apt install --yes cython3
-# Binary
-sudo apt install --yes python3-ropgadget
-sudo apt install --yes python3-pwntools
-# Math
-sudo apt install --yes python3-pulp
-# Net
-sudo apt install --yes python3-websockets
-
-### ################################
-### Installing Lua Packages
-### ################################
-
-# Package Manager
-LUAROCKS_VER="$(curl -sL "https://api.github.com/repos/luarocks/luarocks/releases/latest" | grep "tag_name" | cut -d '"' -f 4 | sed 's/^v//')"
-wget "https://luarocks.org/releases/luarocks-$LUAROCKS_VER.tar.gz"
-tar zxpf "luarocks-$LUAROCKS_VER.tar.gz"
-rm "luarocks-$LUAROCKS_VER.tar.gz"
-cd "luarocks-$LUAROCKS_VER"
-./configure
-make
-sudo make install
-cd ..
-rm -f -r "luarocks-$LUAROCKS_VER"
-
-# https://luarocks.org/
-sudo luarocks install lua-cjson
-sudo luarocks install luafilesystem
-sudo luarocks install luasocket
-sudo luarocks install cffi-lua
-sudo luarocks install lpeg
-
-# New STD Libraries
-sudo luarocks install penlight
-
-### ################################################################################################################################
-
-### ################################
-### Installing Window Editor
-### ################################
-
-# VS Code
 flatpak install -y flathub com.visualstudio.code
 flatall com.visualstudio.code
 cat << 'EOF' | tee "${HOME}/.local/bin/code" > "/dev/null"
@@ -508,7 +311,6 @@ DRI_PRIME=1 ${HOME}/.local/bin/code "$@"
 EOF
 chmod +x "${HOME}/.local/bin/code-nvc"
 
-# Zed
 curl -f https://zed.dev/install.sh | bash
 cat << 'EOF' | tee "${HOME}/.local/bin/zed-nvc" > "/dev/null"
 #!/usr/bin/bash
@@ -516,7 +318,6 @@ DRI_PRIME=1 ${HOME}/.local/bin/zed "$@"
 EOF
 chmod +x "${HOME}/.local/bin/zed-nvc"
 
-# Geany
 sudo apt install --yes geany
 cat << 'EOF' | tee "${HOME}/.local/bin/geany" > "/dev/null"
 #!/usr/bin/bash
@@ -524,7 +325,6 @@ GTK_THEME=Adwaita:dark /usr/bin/geany "$@"
 EOF
 chmod +x "${HOME}/.local/bin/geany"
 
-# Google Antigravity OSS
 sudo mkdir -p "/etc/apt/keyrings"
 curl -fsSL "https://us-central1-apt.pkg.dev/doc/repo-signing-key.gpg" | \
 sudo gpg --dearmor --yes -o "/etc/apt/keyrings/antigravity-repo-key.gpg"
@@ -534,7 +334,6 @@ EOF
 sudo apt update
 sudo apt install --yes antigravity
 
-# Alias Antigravity IDE
 cat << 'EOF' | sudo tee "/usr/bin/ant" > "/dev/null"
 #!/usr/bin/sh
 antigravity "$@"
@@ -542,7 +341,7 @@ EOF
 sudo chmod +x "/usr/bin/ant"
 
 ### ################################
-### Installing Terminal Editor
+### Installing Terminal Editors
 ### ################################
 
 sudo apt install --yes mg
@@ -553,19 +352,9 @@ sudo apt install --yes vim
 sudo apt install --yes emacs
 
 ### ################################
-### Installing Git Config
+### Setup Helix Wrapper
 ### ################################
 
-# Emacs
-mkdir -p "${HOME}/.emacs.d"
-git clone "https://github.com/GabrielFrigo4/.emacs.d.git" "${HOME}/.emacs.d"
-# NeoVim
-mkdir -p "${HOME}/.config/nvim"
-git clone "https://github.com/GabrielFrigo4/nvim.git" "${HOME}/.config/nvim"
-# Vim
-git clone "https://github.com/GabrielFrigo4/vimfiles.git" "${HOME}/vimfiles"
-# Helix
-git clone "https://github.com/GabrielFrigo4/helix.git" "${HOME}/.config/helix"
 cat << 'EOF' | tee "${HOME}/.local/bin/hx" > "/dev/null"
 #!/usr/bin/bash
 /usr/bin/hx "$@"
@@ -574,92 +363,32 @@ EOF
 chmod +x "${HOME}/.local/bin/hx"
 
 ### ################################
-### Updating Git Config
+### Setup Editor Configs
 ### ################################
 
-cd "${HOME}/.emacs.d"
-git pull
-cd "${HOME}/.config/nvim"
-git pull
-cd "${HOME}/vimfiles"
-git pull
-cd "${HOME}/.config/helix"
-git pull
-cd "${HOME}"
-
-### ################################
-### Installing Theme in Geany
-### ################################
-
-# https://www.geany.org/
-mkdir -p "${HOME}/.config/geany/colorschemes"
-cd "${HOME}/.config/geany/colorschemes"
-wget "https://raw.githubusercontent.com/geany/geany-themes/master/colorschemes/one-dark.conf"
-cd ~
-
-### ################################
-### Installing Theme in Micro
-### ################################
-
-### https://draculatheme.com/micro
-git clone "https://github.com/dracula/micro.git"
-mkdir -p "${HOME}/.config/micro/colorschemes"
-cp "micro/dracula.micro" "${HOME}/.config/micro/colorschemes/dracula.micro"
-sudo rm -f -r micro
-cat << 'EOF' | tee "${HOME}/.config/micro/settings.json" > "/dev/null"
-{
-	"colorscheme": "dracula"
-}
-EOF
+. "${SCRIPT_DIR}/../../../common/editors.sh"
 
 ### ################################################################################################################################
 
 ### ################################
-### Installing CLI Tools
+### Installing Rust CLI Tools
 ### ################################
 
-# Firebase
-curl -sL "https://firebase.tools" | sudo upgrade=true bash
-# Fetch
-sudo apt install --yes fastfetch
-# Files Tools
-sudo apt install --yes dos2unix
-# Executables Tools
-sudo apt install --yes checksec
-# Rust Tools
 sudo apt install --yes eza
 sudo apt install --yes bat
 sudo apt install --yes fd-find
 sudo apt install --yes ripgrep
-# Cargo Tools
-cargo install cargo-update
-cargo install-update -a
-# TeX / LaTeX
-sudo apt install --yes texlive-latex-extra
-sudo apt install --yes texlive-lang-portuguese
-# Pandoc
-sudo apt install --yes pandoc
-sudo apt install --yes weasyprint
-# Convert
-sudo apt install --yes imagemagick
-sudo apt install --yes ffmpeg
-# Dada Base
-sudo apt install --yes postgresql
-# Security
-sudo apt install --yes dirb
 
 ### ################################
 ### Alias Rust Tools
 ### ################################
 
-# Alias BatCat
 cat << 'EOF' | sudo tee "/usr/local/bin/bat" > "/dev/null"
 #!/bin/bash
 batcat "$@"
 EOF
 sudo chmod +x "/usr/local/bin/bat"
 
-# Alias Fd-Find
 cat << 'EOF' | sudo tee "/usr/local/bin/fd" > "/dev/null"
 #!/bin/bash
 fdfind "$@"
@@ -667,10 +396,57 @@ EOF
 sudo chmod +x "/usr/local/bin/fd"
 
 ### ################################
-### Installing GUI Tools
+### Installing TeX / LaTeX
 ### ################################
 
-# Wireshark
+sudo apt install --yes texlive-latex-extra
+sudo apt install --yes texlive-lang-portuguese
+
+### ################################
+### Installing Pandoc Tools
+### ################################
+
+sudo apt install --yes pandoc
+sudo apt install --yes weasyprint
+
+### ################################
+### Installing Media Tools
+### ################################
+
+sudo apt install --yes imagemagick
+sudo apt install --yes ffmpeg
+
+### ################################
+### Installing System Fetch
+### ################################
+
+sudo apt install --yes fastfetch
+
+### ################################
+### Installing File Tools
+### ################################
+
+sudo apt install --yes dos2unix
+
+### ################################
+### Installing Security Tools
+### ################################
+
+sudo apt install --yes checksec
+sudo apt install --yes dirb
+
+### ################################
+### Installing Firebase
+### ################################
+
+curl -sL "https://firebase.tools" | sudo upgrade=true bash
+
+### ################################################################################################################################
+
+### ################################
+### Installing Network Analysis Tools
+### ################################
+
 sudo apt install --yes wireshark
 sudo dpkg-reconfigure wireshark-common
 sudo usermod -aG wireshark "$(id -un)"
@@ -680,29 +456,49 @@ cat << 'EOF' | sudo tee "/usr/local/bin/wireshark" > "/dev/null"
 QT_QPA_PLATFORMTHEME="" /usr/bin/wireshark "$@"
 EOF
 sudo chmod +x "/usr/local/bin/wireshark"
-# DBeaver
+
+### ################################
+### Installing Database Tools
+### ################################
+
 sudo wget -O /usr/share/keyrings/dbeaver.gpg.key https://dbeaver.io/debs/dbeaver.gpg.key
 echo "deb [signed-by=/usr/share/keyrings/dbeaver.gpg.key] https://dbeaver.io/debs/dbeaver-ce /" | sudo tee "/etc/apt/sources.list.d/dbeaver.list" > "/dev/null"
 sudo apt update
 sudo apt install --yes dbeaver-ce
-# Chrome
+
+### ################################
+### Installing Web Browsers
+### ################################
+
 curl -fSsL "https://dl.google.com/linux/linux_signing_key.pub" | sudo gpg --dearmor | sudo tee "/usr/share/keyrings/google-chrome.gpg" > "/dev/null"
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee "/etc/apt/sources.list.d/google-chrome.list"
 sudo apt update
 sudo apt install --yes google-chrome-stable
-# Edge
+
 curl -fSsL "https://packages.microsoft.com/keys/microsoft.asc" | sudo gpg --dearmor | sudo tee "/usr/share/keyrings/microsoft-edge.gpg" > "/dev/null"
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-edge.gpg] https://packages.microsoft.com/repos/edge stable main" | sudo tee "/etc/apt/sources.list.d/microsoft-edge.list"
 sudo apt update
 sudo apt install --yes microsoft-edge-stable
-# GitHub
+
+### ################################
+### Installing Git GUI Tools
+### ################################
+
 flatpak install -y flathub io.github.shiftey.Desktop
 flatall io.github.shiftey.Desktop
-# pgAdmin
-flatpak install -y flathub org.pgadmin.pgadmin4
-flatall org.pgadmin.pgadmin4
-# Office
+
+### ################################
+### Installing Office Software
+### ################################
+
 flatpak install -y flathub org.onlyoffice.desktopeditors
 flatall org.onlyoffice.desktopeditors
+
+### ################################
+### Installing pgAdmin
+### ################################
+
+flatpak install -y flathub org.pgadmin.pgadmin4
+flatall org.pgadmin.pgadmin4
 
 ### ################################################################################################################################

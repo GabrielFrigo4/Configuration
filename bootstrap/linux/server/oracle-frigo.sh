@@ -48,7 +48,7 @@ cat << 'EOF' | sudo tee -a "/etc/hosts" > "/dev/null"
 EOF
 
 ### ################################
-### Install Container Essential
+### Installing Container Essential
 ### ################################
 
 sudo apt install --yes podman
@@ -79,7 +79,7 @@ EOF
 sudo systemctl restart caddy
 
 ### ################################
-### Setup Resume Server 
+### Setup Resume Server
 ### ################################
 
 cat << 'EOF' | sudo tee "/home/ubuntu/resume/.env" > "/dev/null"
@@ -109,7 +109,7 @@ sudo systemctl daemon-reload
 sudo systemctl restart resume
 
 ### ################################
-### Setup Game Server 
+### Setup Game Server
 ### ################################
 
 cat << 'EOF' | sudo tee "/home/ubuntu/game/.env" > "/dev/null"
@@ -160,87 +160,51 @@ EOF
 sudo chmod 0440 "/etc/doas.conf"
 
 ### ################################
-### Install Internet Essential
+### Installing Internet Essential
 ### ################################
 
 sudo apt install --yes iptables-persistent
 sudo netfilter-persistent save
 
 ### ################################
-### Install Build Essential
-### ################################
-
-sudo apt install --yes build-essential
-sudo apt install --yes cmake
-sudo apt install --yes make
-
-### ################################
-### Install Clang Essential
-### ################################
-
-sudo apt install --yes clang
-sudo apt install --yes libclang-dev
-
-### ################################
-### Install Musl Essential
-### ################################
-
-sudo apt install --yes musl
-sudo apt install --yes musl-dev
-sudo apt install --yes musl-tools
-
-### ################################
-### Install Git Essential
+### Installing Git Ecosystem
 ### ################################
 
 sudo apt install --yes git
 sudo apt install --yes git-credential-oauth
 sudo apt install --yes gh
 
+### ################################
+### Installing Git Credential Manager
+### ################################
+
 GCM_VER="$(curl -Ls -o "/dev/null" -w %{url_effective} "https://github.com/git-ecosystem/git-credential-manager/releases/latest" | awk -F/ '{print $(NF)}' | sed 's/^v//')"
 wget -O gcm.deb "https://github.com/git-ecosystem/git-credential-manager/releases/download/v${GCM_VER}/gcm-linux-x64-${GCM_VER}.deb"
 sudo apt install --yes "./gcm.deb"
 rm "./gcm.deb"
 
-rm "${HOME}/.gitconfig"
-git config --global credential.helper '!gh auth git-credential'
-git config --global init.defaultBranch "main"
-git config --global pull.rebase false
-git config --global color.ui auto
+### ################################
+### Setup Git Config
+### ################################
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+. "${SCRIPT_DIR}/../../common/git.sh"
 
 ### ################################################################################################################################
 
 ### ################################
-### Setup Emacs
+### Setup Terminal Editors
 ### ################################
 
 sudo apt install --yes mg
-
-### ################################
-### Setup Micro
-### ################################
-
 sudo apt install --yes micro
-git clone "https://github.com/dracula/micro.git"
-mkdir -p "${HOME}/.config/micro/colorschemes"
-cp "micro/dracula.micro" "${HOME}/.config/micro/colorschemes/dracula.micro"
-sudo rm -f -r micro
-cat << 'EOF' | tee "${HOME}/.config/micro/settings.json" > "/dev/null"
-{
-	"colorscheme": "dracula"
-}
-EOF
-
-### ################################
-### Setup Vim
-### ################################
-
 sudo apt install --yes vim
-cat << 'EOF' | tee "${HOME}/.vimrc" | sudo tee "/root/.vimrc" > "/dev/null"
-syn on|filetype plugin indent on
-se nocp nu rnu noet sts=4 sw=4 ts=4 bs=2 ww+=<,>,h,l,[,]
-let &t_SI="\<Esc>[5 q"|let &t_SR="\<Esc>[3 q"|let &t_EI="\<Esc>[1 q"
-EOF
+
+### ################################
+### Setup Editor Configs
+### ################################
+
+. "${SCRIPT_DIR}/../../common/editors.sh"
 
 ### ################################
 ### Installing Bash

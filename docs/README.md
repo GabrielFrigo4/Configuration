@@ -23,3 +23,4 @@ Além deste repositório de `Configuration`, outros dois repositórios complemen
 
 - **[BSD.md](BSD.md)** — Particularidades vitais do FreeBSD (Caminhos em `/usr/local/`, Jails e perfis Konsole).
 - **[KDE.md](KDE.md)** — Dicas sobre o ambiente gráfico (Plasma Wayland/X11, pkexec e Polkit).
+- **[FIREFOX.md](FIREFOX.md)** — Configurações manuais do Firefox (Clipboard API, about:config).

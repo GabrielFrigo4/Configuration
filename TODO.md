@@ -3,25 +3,32 @@
 Este documento centraliza as próximas evoluções arquiteturais e de limpeza planejadas para este repositório de configuração.
 Todas as ações aqui descritas são guiadas pela busca da nossa filosofia principal: atingir um **"Clean Host"** puramente funcional, com desenvolvimento 100% isolado em **Containers/Hypervisors**, e garantir a total modularidade dos nossos 3 pilares (Configuration, Shell, Vault).
 
-## 1. Dependências do Vault
+## 1. Dependências do Vault ✅
 
-- Remover chamadas manuais de `source ~/.vault/config.env` espalhadas pelos scripts.
-- Como o Vault (e o Shell) agora são carregados automaticamente pelo ambiente, refatorar os códigos para que eles apenas consumam as variáveis, assumindo que o ecossistema já as proveu globalmente.
+- ~~Remover chamadas manuais de `source ~/.vault/config.env` espalhadas pelos scripts.~~
+- ~~Como o Vault (e o Shell) agora são carregados automaticamente pelo ambiente, refatorar os códigos para que eles apenas consumam as variáveis, assumindo que o ecossistema já as proveu globalmente.~~
 
 ## 2. Modularização do Bootstrap
 
 - Modularizar intensamente o diretório `/bootstrap`.
 - Quebrar os scripts monolíticos legados em componentes menores, reaproveitáveis e organizados, similar ao modelo focado de "uma coisa, um lugar".
 
-## 3. Refatoração FreeBSD
+## 3. Refatoração FreeBSD ✅
 
-- Extrair os heredocs de criação de arquivos do FreeBSD, seguindo a mesma estratégia de refatoração aplicada ao Linux e ao Windows.
-- **Atenção especial:** O Konsole no FreeBSD não é igual ao do Linux (por exemplo, paths e shells diferem, como `/usr/local/bin/zsh`), exigindo profiles adaptados e não apenas cópias diretas.
+- ~~Extrair os heredocs de criação de arquivos do FreeBSD, seguindo a mesma estratégia de refatoração aplicada ao Linux e ao Windows.~~
+- ~~**Atenção especial:** O Konsole no FreeBSD não é igual ao do Linux (por exemplo, paths e shells diferem, como `/usr/local/bin/zsh`), exigindo profiles adaptados e não apenas cópias diretas.~~
+- Profiles criados em `software/terminals/konsole/freebsd/` com caminhos corretos (`/usr/local/bin/bash`, `/usr/local/bin/zsh`). O `gui.sh` agora usa `cp` para instalá-los.
+
+## 4. Limpeza de Comentários ✅
+
+- ~~Fazer uma varredura para remover comentários `#` (shell) ou `rem` (cmd) desnecessários ou excessivamente literais em todos os scripts.~~
+- ~~Focar no padrão visual já estabelecido de blocos delimitadores com múltiplos caracteres (`### ################################`) para separar as seções, mantendo o código conciso e legível.~~
 
 ## 4. Limpeza de Comentários
 
 - Fazer uma varredura para remover comentários `#` (shell) ou `rem` (cmd) desnecessários ou excessivamente literais em todos os scripts.
 - Focar no padrão visual já estabelecido de blocos delimitadores com múltiplos caracteres (`### ################################`) para separar as seções, mantendo o código conciso e legível.
+- Ainda tem script faltando isso, principalemte os .cmd, mas em geral já está quase pronto
 
 ## 5. Auditoria de Softwares
 
@@ -33,13 +40,13 @@ Todas as ações aqui descritas são guiadas pela busca da nossa filosofia princ
 - Alterar a filosofia do ambiente para um modelo focado em **Containers** em vez de instalar e jogar todas as dependências de desenvolvimento e banco de dados diretamente no host.
 - Atingir sistemas compatíveis como Linux e FreeBSD (para o Windows não haverá grandes mudanças nesse escopo específico).
 
-## 7. Macrorit no Windows
+## 7. Macrorit no Windows ✅
 
-- Atualizar o Macrorit (Partition Expert)
-- Remover do Chocolatey (antigo) e mover para um novo
+- ~~Atualizar o Macrorit (Partition Expert)~~
+- ~~Remover do Chocolatey (antigo) e mover para um novo~~
+- Movido para `software/external.md` como download manual oficial do site macrorit.com.
 
+## 8. Firefox Clipboard ✅
 
-## 8. Firefox Clipboard
- - Colocar em um README como Configurar o Clipboard do Firefox
- - about:config
- - dom.events.testing.asyncClipboard = True
+- ~~Colocar em um README como Configurar o Clipboard do Firefox~~
+- Documentação criada em `docs/FIREFOX.md` com instruções de `about:config` e `dom.events.testing.asyncClipboard`.
