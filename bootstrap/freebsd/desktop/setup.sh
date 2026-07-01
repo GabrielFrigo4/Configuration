@@ -92,10 +92,10 @@ if [ ! -d "/usr/ports/.git" ]; then
 	sudo git clone --branch main --single-branch --depth 1 https://git.FreeBSD.org/ports.git /usr/ports
 	sudo git -C "/usr/ports" config --unset-all remote.origin.fetch
 	sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/main:refs/remotes/origin/main"
-	sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/${CURRENT_PORTS}:refs/remotes/origin/${CURRENT_PORTS}"
+	sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/${PORTS_QUARTER}:refs/remotes/origin/${PORTS_QUARTER}"
 fi
 
-PORTS_TARGET="${1:-$CURRENT_PORT}"
+PORTS_TARGET="${1:-$PORTS_QUARTER}"
 sudo git -C "/usr/ports" fetch --depth 1
 sudo git -C "/usr/ports" checkout ${PORTS_TARGET}
 sudo git -C "/usr/ports" reset --hard origin/${PORTS_TARGET}
