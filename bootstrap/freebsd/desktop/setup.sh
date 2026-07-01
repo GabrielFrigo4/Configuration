@@ -87,14 +87,18 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ### Setup Ports
 ### ################################
 
-sudo git clone --branch main --single-branch --depth 1 https://git.FreeBSD.org/ports.git /usr/ports
-sudo git -C "/usr/ports" pull
+PORTS_QUARTER="$(date +%Y)Q$(date +%m | awk '{print int(($1-1)/3)+1}')"
+if [ ! -d "/usr/ports/.git" ]; then
+	sudo git clone --branch main --single-branch --depth 1 https://git.FreeBSD.org/ports.git /usr/ports
+	sudo git -C "/usr/ports" config --unset-all remote.origin.fetch
+	sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/main:refs/remotes/origin/main"
+	sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/${CURRENT_PORTS}:refs/remotes/origin/${CURRENT_PORTS}"
+fi
 
-CURRENT_PORT="$(date +%Y)Q$(date +%m | awk '{print int(($1-1)/3)+1}')"
-sudo git -C "/usr/ports" config --unset-all remote.origin.fetch
-sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/main:refs/remotes/origin/main"
-sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/${CURRENT_PORT}:refs/remotes/origin/${CURRENT_PORT}"
+PORTS_TARGET="${1:-$CURRENT_PORT}"
 sudo git -C "/usr/ports" fetch --depth 1
+sudo git -C "/usr/ports" checkout ${PORTS_TARGET}
+sudo git -C "/usr/ports" reset --hard origin/${PORTS_TARGET}
 
 ### ################################
 ### Setup Jails
