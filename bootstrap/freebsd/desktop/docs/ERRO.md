@@ -16,3 +16,8 @@ Registro de componentes do notebook que atualmente não possuem suporte completo
   - **Componente:** Controlador Realtek.
   - **Motivo:** O módulo `ng_ubt` não consegue lidar com o gerenciamento de energia desse chip específico, resultando no erro contínuo de `Operation timed out` ao tentar ler o status do rádio local.
   - **Status:** Congelado. Aguardando atualizações futuras na pilha de Bluetooth do sistema operacional.
+
+- [ ] **Conexão Wi-Fi**
+  - **Componente:** [Ex: Realtek RTL8822CE ou Intel Wi-Fi 6 AX201]
+  - **Motivo:** A pilha de rede sem fio nativa do FreeBSD (camada `net80211`) ainda está em processo de modernização. Modelos mais recentes sofrem com a falta de drivers nativos consolidados ou com a incapacidade de utilizar padrões modernos de alta velocidade (como 802.11ac / Wi-Fi 5 e 802.11ax / Wi-Fi 6). Dependendo do chip, o sistema pode não reconhecer a interface `wlan0` de forma alguma, ou limitar a conexão aos padrões legados (802.11a/g/n), causando lentidão.
+  - **Status:** [Escolha: Congelado OU Parcialmente Funcional]. Solução atual é utilizar um adaptador Wi-Fi USB compatível (com chipset Ralink ou Atheros), conexão cabeada (Ethernet) ou ancoragem de rede (Tethering) via USB pelo celular.
