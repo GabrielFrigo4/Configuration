@@ -90,7 +90,10 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 sudo git clone "https://git.FreeBSD.org/ports.git" "/usr/ports"
 sudo git -C "/usr/ports" pull
 
-sudo git -C "/usr/ports" config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+CURRENT_PORT="$(date +%Y)Q$(date +%m | awk '{print int(($1-1)/3)+1}')"
+sudo git -C "/usr/ports" config --unset-all remote.origin.fetch
+sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/main:refs/remotes/origin/main"
+sudo git -C "/usr/ports" config --add remote.origin.fetch "+refs/heads/${CURRENT_PORT}:refs/remotes/origin/${CURRENT_PORT}"
 sudo git -C "/usr/ports" fetch
 
 ### ################################
