@@ -50,3 +50,8 @@ Todas as ações aqui descritas são guiadas pela busca da nossa filosofia princ
 
 - ~~Colocar em um README como Configurar o Clipboard do Firefox~~
 - Documentação criada em `docs/FIREFOX.md` com instruções de `about:config` e `dom.events.testing.asyncClipboard`.
+
+## 9. Linuxlator (No Host e nas Jails)
+- Maneira Simples de Subistituir Bhyve para cenarios mais simples (Jails / Bastille)
+- Usar no Host como uma extensão do catalogo FreeBSD (pkg / ports)
+- Continuando mantendo / respeitando a Filosofia do Projeto em pé
